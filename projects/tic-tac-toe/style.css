@@ -46,12 +46,21 @@ h1 {
     padding: 0.8rem 2rem;
     font-size: 1rem;
     font-weight: 600;
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    background: linear-gradient(135deg, #4facfe, #003249);
     color: white;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+#newGame{
+   padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 20px;
+    cursor:pointer; 
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #9AD1D4, #003249);
     font-family: 'Poppins', sans-serif;
 }
 

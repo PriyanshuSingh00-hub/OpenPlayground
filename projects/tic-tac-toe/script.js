@@ -1,6 +1,7 @@
 const cells = document.querySelectorAll('.cell');
 const statusText = document.getElementById('status');
 const restartBtn = document.getElementById('restart');
+const newBtn = document.getElementById('newGame');
 
 let currentPlayer = 'X';
 let gameActive = true;
@@ -79,7 +80,7 @@ function highlightWinningCells(cells) {
     });
 }
 
-function restartGame() {
+function newGame() {
     currentPlayer = 'X';
     gameActive = true;
     gameState = ['', '', '', '', '', '', '', '', ''];
@@ -91,5 +92,20 @@ function restartGame() {
     });
 }
 
+function resetGame() {
+    gameState = ['', '', '', '', '', '', '', '', ''];
+    gameActive = true; // allow play again
+
+    cells.forEach(cell => {
+        cell.textContent = '';
+        cell.classList.remove('taken', 'x', 'o', 'winner');
+    });
+
+    statusText.textContent = `Game reset. Player ${currentPlayer}'s Turn`;
+}
+
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
-restartBtn.addEventListener('click', restartGame);
+
+restartBtn.addEventListener('click', resetGame);   // quick abort
+newBtn.addEventListener('click', newGame);          // fresh start
+
