@@ -1076,3 +1076,70 @@ html[data-theme="dark"] #toggle-mode-btn i {
   color: #fff;
   font-size: 22px;
 }
+
+
+/* ============================= */
+/* HALL OF CONTRIBUTORS      */
+/* ============================= */
+
+.contributors-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.contributors-grid {
+    display: grid;
+    /* Creates a responsive grid with minimum card width of 180px */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 1rem;
+}
+
+.contributor-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.contributor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+.contributor-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    border: 3px solid var(--bg-secondary);
+    transition: border-color 0.3s ease;
+}
+
+.contributor-card:hover .contributor-avatar {
+    border-color: var(--primary);
+}
+
+.contributor-name {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.loading-msg {
+    grid-column: 1 / -1;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}

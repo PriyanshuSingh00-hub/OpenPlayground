@@ -218,3 +218,67 @@ console.log(
     "%cWant to contribute? https://github.com/YadavAkhileshh/OpenPlayground",
     "color:#8b5cf6;font-size:14px"
 );
+
+
+// ===============================
+// Hall of Contributors Logic
+// ===============================
+const contributorsGrid = document.getElementById("contributors-grid");
+
+async function fetchContributors() {
+    try {
+        // Fetch data from GitHub API
+        const response = await fetch('https://api.github.com/repos/YadavAkhileshh/OpenPlayground/contributors');
+        
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+
+        const contributors = await response.json();
+        
+        // Clear the "Loading..." message
+        contributorsGrid.innerHTML = '';
+
+        // Generate a card for each contributor
+        contributors.forEach(contributor => {
+            const card = document.createElement('a');
+            card.href = contributor.html_url;
+            card.target = "_blank";
+            card.rel = "noopener noreferrer"; // Security best practice for target="_blank"
+            card.className = "contributor-card";
+            
+            card.innerHTML = `
+                <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
+                <span class="contributor-name">${contributor.login}</span>
+            `;
+            
+            // Add animation delay for a stagger effect (optional polish)
+            card.style.opacity = "0";
+            card.style.animation = "fadeIn 0.5s ease forwards";
+            
+            contributorsGrid.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("Error fetching contributors:", error);
+        contributorsGrid.innerHTML = `
+            <p style="grid-column: 1/-1; color: var(--text-muted);">
+                Unable to load contributors directly from GitHub API. <br>
+                <a href="https://github.com/YadavAkhileshh/OpenPlayground/graphs/contributors" target="_blank" style="color: var(--primary);">View on GitHub</a>
+            </p>
+        `;
+    }
+}
+
+// Add simple fade-in animation styles dynamically
+const style = document.createElement('style');
+style.innerHTML = `
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize
+fetchContributors();
