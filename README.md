@@ -21,6 +21,8 @@ OpenPlayground is a community-driven platform where developers showcase their cr
 - **Beginner Friendly** - Perfect for developers at any skill level
 - **Open Source** - Contribute to something meaningful
 
+
+
 ## Featured Projects
 
 Our community has built some amazing projects:
@@ -30,6 +32,9 @@ Our community has built some amazing projects:
 - **Todo List** - Task manager with local storage
 - **Quiz Game** - Interactive quiz with multiple categories
 - **Digital Clock** - Real-time clock with customizable themes
+- **QR Code Generator**- A simple and interactive QR Code Generator.
+- **Instagram Bio Generator** - Generate random bio suggestions with emojis and vibes.
+
 
 *[View all projects →](https://yadavakhileshh.github.io/OpenPlayground/)*
 
