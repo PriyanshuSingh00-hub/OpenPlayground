@@ -249,7 +249,8 @@ function renderProjects() {
   if (paginatedItems.length === 0) {
     projectsContainer.innerHTML = `
             <div class="empty-state">
-                <h3>No projects found</h3>
+              <div class = "empty-icon">📂</div>
+                <h3>No projects found! </h3>
                 <p>Try adjusting your search or filter criteria</p>
             </div>
         `;
