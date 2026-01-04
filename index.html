@@ -17,6 +17,7 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 
+
     <style>
         .pagination-container {
             display: flex;
@@ -51,81 +52,6 @@
         }
     </style>
 
-    <style>
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 9999;
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .nav-container {
-            max-width: 1280px;
-            margin: auto;
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-
-        /* ✅ FIXED MOBILE NAVBAR (ONLY CHANGE HERE) */
-@media (max-width: 768px) {
-  .nav-toggle {
-    display: block !important;
-    z-index: 10000;
-  }
-
-  .nav-links {
-    position: fixed !important;
-    top: 75px !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: calc(100vh - 75px) !important;
-
-    flex-direction: column !important;
-    background: var(--glass-bg) !important;
-    backdrop-filter: var(--glass-blur) !important;
-    padding: 1.5rem !important;
-    gap: 1.2rem !important;
-
-    display: none !important;          /* 🔥 KEY FIX */
-    transform: none !important;
-    z-index: 9999 !important;
-  }
-
-  .nav-links.active {
-    display: flex !important;          /* 🔥 KEY FIX */
-  }
-}
-@media (max-width: 768px) {
-  .nav-toggle {
-    display: block !important;
-    color: var(--text-primary) !important;
-  }
-}
-
-
-        body {
-            padding-top: 75px;
-        }
-    </style>
 </head>
 
 <body>
@@ -136,8 +62,8 @@
         </button>
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+    <!-- Navbar -->
+    <header class="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
                 <i class="ri-code-box-fill"></i>
@@ -155,154 +81,56 @@
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <i class="ri-menu-3-line"></i>
             </button>
+        </div>
+    </header>
 
-            <div class="nav-links" id="navLinks">
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contribute" class="nav-link">Contribute</a>
-                <a href="masthead.html" class="nav-link">About</a>
-                <a href="https://github.com/YadavAkhileshh/OpenPlayground" target="_blank" class="nav-link">
-                    <i class="ri-github-fill"></i> GitHub
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-badge">
+                <i class="ri-rocket-2-line"></i>
+                Open Source Community
+            </span>
+            <h1 class="hero-title">
+                <span class="gradient-text">Build</span>, Share & Explore
+            </h1>
+            <p class="hero-tagline">
+                A community-driven platform where developers showcase their creativity
+                through interactive web projects
+            </p>
+            <div class="hero-buttons">
+                <a href="https://github.com/YadavAkhileshh/OpenPlayground" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-primary">
+                    <i class="ri-github-fill"></i>
+                    View on GitHub
+                </a>
+                <a href="#contribute" class="btn btn-secondary">
+                    <i class="ri-add-circle-line"></i>
+                    Contribute
                 </a>
             </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="project-count">22+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" id="contributor-count">29+</span>
+                    <span class="stat-label">Contributors</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Open Source</span>
+                </div>
+            </div>
         </div>
-    </nav>
-
-    <script>
-        const toggle = document.getElementById("navToggle");
-        const links = document.getElementById("navLinks");
-
-        toggle.addEventListener("click", (e) => {
-            e.stopPropagation();
-            links.classList.toggle("active");
-            document.body.style.overflow = links.classList.contains("active")
-                ? "hidden"
-                : "auto";
-        });
-
-        links.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-                links.classList.remove("active");
-                document.body.style.overflow = "auto";
-            });
-        });
-
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") {
-                links.classList.remove("active");
-                document.body.style.overflow = "auto";
-            }
-        });
-    </script>
-
- <header class="hero-section" id="home" style="
-    position: relative;
-    width: 100%;
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-    background: url('your-hero-image.jpg') center/cover no-repeat; /* replace with your image */
-">
-
-    <div class="hero-grid" style="
-        position: absolute;
-        width: 100%; height: 100%;
-        display: grid;
-        z-index: 1;
-    "></div>
-
-    <div class="hero-content" style="
-        position: relative;
-        z-index: 2;
-        color: #111; /* dark text color */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        max-width: 800px;
-    ">
-
-        <div class="hero-badge fade-up" style="
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 999px;
-            font-weight: 500;
-            background: transparent; /* no grey background */
-        ">
-            <span class="badge-icon"><i class="ri-rocket-line"></i></span>
-            <span class="badge-text">v2.0 Community Launch</span>
-        </div>
-
-        <h1 class="hero-title fade-up delay-100" style="
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.2;
-            color: #111; /* dark text */
-        ">
-            <span class="text-gradient" style="
-                background: linear-gradient(90deg,#2563eb,#9333ea);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            ">Build,</span> Share and Explore
-        </h1>
-
-        <p class="hero-subtitle fade-up delay-200" style="
-            font-size: 1.5rem;
-            line-height: 1.6;
-            max-width: 700px;
-            color: #111; /* dark text */
-        ">
-            A community-driven platform where developers showcase their creativity through interactive web projects
-        </p>
-
-        <!-- Hero Buttons -->
-        <div class="hero-actions fade-up delay-300" style="
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        ">
-            <a href="#projects" style="
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                padding: 0.8rem 1.5rem;
-                background: #2563eb;
-                color: white;
-                border-radius: 8px;
-                font-weight: 600;
-                text-decoration: none;
-                transition: 0.2s;
-            " onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
-                Start Building <i class="ri-arrow-right-line"></i>
-            </a>
-
-            <a href="https://github.com/YadavAkhileshh/OpenPlayground" target="_blank" style="
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                padding: 0.8rem 1.5rem;
-                border: 2px solid #111;
-                color: #111;
-                border-radius: 8px;
-                font-weight: 600;
-                text-decoration: none;
-                transition: 0.2s;
-            " onmouseover="this.style.background='#111'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='#111'">
-                <i class="ri-github-fill"></i> GitHub
-            </a>
-        </div>
-
-    </div>
-</header>
-
-
+    </section>
 
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
@@ -354,21 +182,21 @@
         <!-- Projects Grid -->
         <div class="projects-container">
             <!-- Habit Tracker -->
-<a href="./projects/habit-tracker/index.html" class="card" data-category="utility">
-    <div class="card-cover" style="background:#22c55e; color:white">
-        <i class="ri-calendar-check-line"></i>
-    </div>
-    <div class="card-content">
-        <div class="card-header-flex">
-            <h3 class="card-heading">Habit Tracker</h3>
-            <span class="category-tag">Utility</span>
-        </div>
-        <p class="card-description">Track daily habits and build consistency with streaks.</p>
-        <div class="card-tech">
-            <span>HTML</span><span>CSS</span><span>JS</span>
-        </div>
-    </div>
-</a>
+            <a href="./projects/habit-tracker/index.html" class="card" data-category="utility">
+                <div class="card-cover" style="background:#22c55e; color:white">
+                    <i class="ri-calendar-check-line"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Habit Tracker</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+                    <p class="card-description">Track daily habits and build consistency with streaks.</p>
+                    <div class="card-tech">
+                        <span>HTML</span><span>CSS</span><span>JS</span>
+                    </div>
+                </div>
+            </a>
 
             <!-- Pomodoro Timer -->
             <a href="./projects/PomodoroTimer/index.html" class="card" data-category="utility">
@@ -489,13 +317,19 @@
                 </div>
             </a>
 
-        <!-- Quiz Game -->
-        <a href="./projects/quiz-game/index.html" class="card" data-category="puzzle">
-            <div class="card-cover quiz-cover"><i class="ri-question-line"></i></div>
-            <div class="card-content">
-                <div class="card-header-flex">
-                    <h3 class="card-heading">Quiz Game</h3>
-                    <span class="category-tag">Puzzle</span>
+            <!-- Quiz Game -->
+            <a href="./projects/quiz-game/index.html" class="card" data-category="puzzle">
+                <div class="card-cover quiz-cover"><i class="ri-question-line"></i></div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Quiz Game</h3>
+                        <span class="category-tag">Puzzle</span>
+                    </div>
+                    <p class="card-description">MCQ quiz with timer and score tracking.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
+            </a>
+
             <!-- Password Generator -->
             <a href="./projects/Password-Generator/frontend/index.html" class="card" data-category="utility">
                 <div class="card-cover" style="background:#ef4444; color:white"><i class="ri-lock-password-line"></i>
@@ -557,11 +391,6 @@
                         <h3 class="card-heading">Image Slider</h3>
                         <span class="category-tag">Utility</span>
                     </div>
-            </a>
-            <!-- Password Generator Project -->
-            <a href="./projects/Password-Generator/frontend/index.html" class="card" data-category="utility">
-                <div class="card-cover password-gen-cover">
-                    <i class="ri-key-2-line"></i>
                     <p class="card-description">Smooth image carousel with navigation controls.</p>
                     <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
                 </div>
@@ -594,504 +423,408 @@
                 </div>
             </a>
 
-    <div class="card-tech">
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>API</span>
-    </div>
-    </div>
-    </a>
-    
-    
-    <!-- random joke generator -->
-    <a href="./projects/random-joke-generator/index.html"
-   class="card"
-   data-category="fun">
-
-  <div class="card-cover joke-cover"
-       style="background:#a5b4fc;display:flex;align-items:center;justify-content:center">
-    <i class="ri-emotion-laugh-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Random Joke Generator</h3>
-      <span class="category-tag">Fun</span>
-    </div>
-
-    <p class="card-description">
-      Instantly generates random jokes for a quick laugh using a clean and minimal interface.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>API</span>
-    </div>
-  </div>
-
-</a>
-
-
-
-<!-- random dice generator -->
-<a href="./projects/random-dice-generator/index.html"
-   class="card"
-   data-category="fun">
-
-  <div class="card-cover dice-cover"
-       style="background:#fde68a;display:flex;align-items:center;justify-content:center">
-    <i class="ri-dice-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Random Dice Number Generator</h3>
-      <span class="category-tag">Fun</span>
-    </div>
-
-    <p class="card-description">
-      Generates a random dice roll between 1 and 6 with a single click, perfect for games,
-      decisions, or settling arguments fairly.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-
- <!-- chat app -->
-<a href="./projects/chat-app/index.html"
-   class="card"
-   data-category="communication">
-
-  <div class="card-cover chat-cover"
-       style="background:#a7f3d0;display:flex;align-items:center;justify-content:center">
-    <i class="ri-chat-3-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Real-Time Chat App</h3>
-      <span class="category-tag">Communication</span>
-    </div>
-
-    <p class="card-description">
-      A simple real-time chat application that lets users send and receive messages instantly
-      with a clean, responsive interface.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-<!-- captcha generator -->
-<a href="./projects/captcha-generator/index.html"
-   class="card"
-   data-category="security">
-
-  <div class="card-cover captcha-cover"
-       style="background:#c7d2fe;display:flex;align-items:center;justify-content:center">
-    <i class="ri-shield-keyhole-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Captcha Generator</h3>
-      <span class="category-tag">Security</span>
-    </div>
-
-    <p class="card-description">
-      Generates random CAPTCHA challenges to prevent bot access and verify human users
-      using a simple, lightweight interface.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-<!-- unit convertor -->
-<a href="./projects/unit-converter/index.html"
-   class="card"
-   data-category="utility">
-
-  <div class="card-cover unit-cover"
-       style="background:#bbf7d0;display:flex;align-items:center;justify-content:center">
-    <i class="ri-scales-3-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Unit Converter</h3>
-      <span class="category-tag">Utility</span>
-    </div>
-
-    <p class="card-description">
-      Converts common units like length, weight, temperature, and time instantly
-      with a clean, intuitive interface.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-<!-- typing speed test -->
-<a href="./projects/typing-speed-test/index.html"
-   class="card"
-   data-category="utility">
-
-  <div class="card-cover typing-cover"
-       style="background:#fde2e4;display:flex;align-items:center;justify-content:center">
-    <i class="ri-keyboard-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Typing Speed Test</h3>
-      <span class="category-tag">Utility</span>
-    </div>
-
-    <p class="card-description">
-      Test your typing speed and accuracy in real time with a clean, distraction-free
-      interface designed to improve productivity.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-<!-- todo list -->
-<a href="./projects/todo-list/index.html"
-   class="card"
-   data-category="utility">
-
-  <div class="card-cover todo-cover"
-       style="background:#e0f2fe;display:flex;align-items:center;justify-content:center">
-    <i class="ri-checkbox-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Todo List App</h3>
-      <span class="category-tag">Utility</span>
-    </div>
-
-    <p class="card-description">
-      Organize tasks efficiently with a simple todo list that supports adding,
-      completing, and deleting tasks in a clean interface.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-
-<!-- Tic Tac Toe -->
-<a href="./projects/tic-tac-toe/index.html"
-   class="card"
-   data-category="strategy">
-
-  <div class="card-cover ttt-cover"
-       style="background:#ddd6fe;display:flex;align-items:center;justify-content:center">
-    <i class="ri-grid-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Tic Tac Toe</h3>
-      <span class="category-tag">Strategy</span>
-    </div>
-
-    <p class="card-description">
-      A classic two-player strategy game with a simple grid-based layout,
-      perfect for quick matches and logic practice.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-<!-- random quote -->
-<a href="./projects/random-quote-generator/index.html"
-   class="card"
-   data-category="fun">
-
-  <div class="card-cover quote-cover"
-       style="background:#fde68a;display:flex;align-items:center;justify-content:center">
-    <i class="ri-double-quotes-l"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Random Quote Generator</h3>
-      <span class="category-tag">Fun</span>
-    </div>
-
-    <p class="card-description">
-      Instantly displays random inspirational and motivational quotes
-      with a clean, minimal interface for daily inspiration.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>API</span>
-    </div>
-  </div>
-</a>
-
-
-<!-- password generator -->
-<a href="./projects/password-generator/index.html"
-   class="card"
-   data-category="security">
-
-  <div class="card-cover password-gen-cover"
-       style="background:#fecaca;display:flex;align-items:center;justify-content:center">
-    <i class="ri-lock-password-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Password Generator</h3>
-      <span class="category-tag">Security</span>
-    </div>
-
-    <p class="card-description">
-      Generates strong, random passwords with customizable options
-      to help keep your accounts secure.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-
-<!-- password strength checker -->
-<a href="./projects/password-strength-checker/index.html"
-   class="card"
-   data-category="security">
-
-  <div class="card-cover password-check-cover"
-       style="background:#bbf7d0;display:flex;align-items:center;justify-content:center">
-    <i class="ri-shield-check-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Password Strength Checker</h3>
-      <span class="category-tag">Security</span>
-    </div>
-
-    <p class="card-description">
-      Evaluates password strength in real time and provides feedback
-      to help users create safer, more secure passwords.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-<!-- digital clock -->
-<a href="./projects/digital-clock/index.html"
-   class="card"
-   data-category="utility">
-
-  <div class="card-cover clock-cover"
-       style="background:#fde2e4;display:flex;align-items:center;justify-content:center">
-    <i class="ri-time-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Digital Clock</h3>
-      <span class="category-tag">Utility</span>
-    </div>
-
-    <p class="card-description">
-      Displays the current time in real time with a clean digital interface,
-      updating every second for accuracy.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-<!-- counter app -->
-<a href="./projects/counter/index.html"
-   class="card"
-   data-category="utility">
-
-  <div class="card-cover counter-cover"
-       style="background:#e0f2fe;display:flex;align-items:center;justify-content:center">
-    <i class="ri-add-circle-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Counter App</h3>
-      <span class="category-tag">Utility</span>
-    </div>
-
-    <p class="card-description">
-      A simple counter application that allows users to increment, decrement,
-      and reset values with instant visual feedback.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-<!--image-slider-->
-<a href="./projects/image-slider/index.html"
-   class="card"
-   data-category="utility">
-
-  <div class="card-cover slider-cover"
-       style="background:#dbeafe;display:flex;align-items:center;justify-content:center">
-    <i class="ri-image-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Image Slider</h3>
-      <span class="category-tag">Utility</span>
-    </div>
-
-    <p class="card-description">
-      A smooth, responsive image slider with navigation controls,
-      perfect for showcasing images or featured content.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-<!-- BMI Calculator -->
-<a href="./projects/bmi-calculator/index.html"
-   class="card"
-   data-category="utility">
-
-  <div class="card-cover bmi-cover"
-       style="background:#c7f9cc;display:flex;align-items:center;justify-content:center">
-    <i class="ri-heart-pulse-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">BMI Calculator</h3>
-      <span class="category-tag">Utility</span>
-    </div>
-
-    <p class="card-description">
-      Calculates Body Mass Index using height and weight inputs,
-      helping users understand basic health metrics instantly.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-
-
-<!-- Age Calculator -->
-<a href="./projects/age-calculator/index.html"
-   class="card"
-   data-category="utility">
-
-  <div class="card-cover age-cover"
-       style="background:#bae6fd;display:flex;align-items:center;justify-content:center">
-    <i class="ri-calendar-line"></i>
-  </div>
-
-  <div class="card-content">
-    <div class="card-header-flex">
-      <h3 class="card-heading">Age Calculator</h3>
-      <span class="category-tag">Utility</span>
-    </div>
-
-    <p class="card-description">
-      Calculates exact age in years, months, and days based on the selected
-      date of birth with instant results.
-    </p>
-
-    <div class="card-tech">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </div>
-</a>
-
-        <!-- Add more projects here -->
-       
+
+
+
+            <!-- random joke generator -->
+            <a href="./projects/random-joke-generator/index.html" class="card" data-category="fun">
+
+                <div class="card-cover joke-cover"
+                    style="background:#a5b4fc;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-emotion-laugh-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Random Joke Generator</h3>
+                        <span class="category-tag">Fun</span>
+                    </div>
+
+                    <p class="card-description">
+                        Instantly generates random jokes for a quick laugh using a clean and minimal interface.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>API</span>
+                    </div>
+                </div>
+
+            </a>
+
+
+
+            <!-- random dice generator -->
+            <a href="./projects/random-dice-generator/index.html" class="card" data-category="fun">
+
+                <div class="card-cover dice-cover"
+                    style="background:#fde68a;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-dice-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Random Dice Number Generator</h3>
+                        <span class="category-tag">Fun</span>
+                    </div>
+
+                    <p class="card-description">
+                        Generates a random dice roll between 1 and 6 with a single click, perfect for games,
+                        decisions, or settling arguments fairly.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+
+            <!-- chat app -->
+            <a href="./projects/chat-app/index.html" class="card" data-category="communication">
+
+                <div class="card-cover chat-cover"
+                    style="background:#a7f3d0;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-chat-3-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Real-Time Chat App</h3>
+                        <span class="category-tag">Communication</span>
+                    </div>
+
+                    <p class="card-description">
+                        A simple real-time chat application that lets users send and receive messages instantly
+                        with a clean, responsive interface.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- captcha generator -->
+            <a href="./projects/captcha-generator/index.html" class="card" data-category="security">
+
+                <div class="card-cover captcha-cover"
+                    style="background:#c7d2fe;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-shield-keyhole-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Captcha Generator</h3>
+                        <span class="category-tag">Security</span>
+                    </div>
+
+                    <p class="card-description">
+                        Generates random CAPTCHA challenges to prevent bot access and verify human users
+                        using a simple, lightweight interface.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- unit convertor -->
+            <a href="./projects/unit-converter/index.html" class="card" data-category="utility">
+
+                <div class="card-cover unit-cover"
+                    style="background:#bbf7d0;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-scales-3-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Unit Converter</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+
+                    <p class="card-description">
+                        Converts common units like length, weight, temperature, and time instantly
+                        with a clean, intuitive interface.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- typing speed test -->
+            <a href="./projects/typing-speed-test/index.html" class="card" data-category="utility">
+
+                <div class="card-cover typing-cover"
+                    style="background:#fde2e4;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-keyboard-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Typing Speed Test</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+
+                    <p class="card-description">
+                        Test your typing speed and accuracy in real time with a clean, distraction-free
+                        interface designed to improve productivity.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- todo list -->
+            <a href="./projects/todo-list/index.html" class="card" data-category="utility">
+
+                <div class="card-cover todo-cover"
+                    style="background:#e0f2fe;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-checkbox-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Todo List App</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+
+                    <p class="card-description">
+                        Organize tasks efficiently with a simple todo list that supports adding,
+                        completing, and deleting tasks in a clean interface.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+
+            <!-- Tic Tac Toe -->
+            <a href="./projects/tic-tac-toe/index.html" class="card" data-category="strategy">
+
+                <div class="card-cover ttt-cover"
+                    style="background:#ddd6fe;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-grid-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Tic Tac Toe</h3>
+                        <span class="category-tag">Strategy</span>
+                    </div>
+
+                    <p class="card-description">
+                        A classic two-player strategy game with a simple grid-based layout,
+                        perfect for quick matches and logic practice.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- random quote -->
+            <a href="./projects/random-quote-generator/index.html" class="card" data-category="fun">
+
+                <div class="card-cover quote-cover"
+                    style="background:#fde68a;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-double-quotes-l"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Random Quote Generator</h3>
+                        <span class="category-tag">Fun</span>
+                    </div>
+
+                    <p class="card-description">
+                        Instantly displays random inspirational and motivational quotes
+                        with a clean, minimal interface for daily inspiration.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>API</span>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- password generator -->
+            <a href="./projects/password-generator/index.html" class="card" data-category="security">
+
+                <div class="card-cover password-gen-cover"
+                    style="background:#fecaca;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-lock-password-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Password Generator</h3>
+                        <span class="category-tag">Security</span>
+                    </div>
+
+                    <p class="card-description">
+                        Generates strong, random passwords with customizable options
+                        to help keep your accounts secure.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+
+            <!-- password strength checker -->
+            <a href="./projects/password-strength-checker/index.html" class="card" data-category="security">
+
+                <div class="card-cover password-check-cover"
+                    style="background:#bbf7d0;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-shield-check-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Password Strength Checker</h3>
+                        <span class="category-tag">Security</span>
+                    </div>
+
+                    <p class="card-description">
+                        Evaluates password strength in real time and provides feedback
+                        to help users create safer, more secure passwords.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- digital clock -->
+            <a href="./projects/digital-clock/index.html" class="card" data-category="utility">
+
+                <div class="card-cover clock-cover"
+                    style="background:#fde2e4;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-time-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Digital Clock</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+
+                    <p class="card-description">
+                        Displays the current time in real time with a clean digital interface,
+                        updating every second for accuracy.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- counter app -->
+            <a href="./projects/counter/index.html" class="card" data-category="utility">
+
+                <div class="card-cover counter-cover"
+                    style="background:#e0f2fe;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-add-circle-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Counter App</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+
+                    <p class="card-description">
+                        A simple counter application that allows users to increment, decrement,
+                        and reset values with instant visual feedback.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+
+            <!--image-slider-->
+            <a href="./projects/image-slider/index.html" class="card" data-category="utility">
+
+                <div class="card-cover slider-cover"
+                    style="background:#dbeafe;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-image-line"></i>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Image Slider</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+
+                    <p class="card-description">
+                        A smooth, responsive image slider with navigation controls,
+                        perfect for showcasing images or featured content.
+                    </p>
+
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Add more projects here -->
+
             <!-- Productivity Dashboard -->
             <a href="./projects/productivity-dashboard/index.html" class="card" data-category="utility">
                 <div class="card-cover" style="background:#6366f1; color:white"><i class="ri-dashboard-line"></i></div>
@@ -1209,222 +942,149 @@
                         <h3 class="card-heading">Monthly Calendar</h3>
                         <span class="category-tag">Utility</span>
                     </div>
-                </a>
-
-            </div>
-
-            <!-- Pagination -->
-            <div id="pagination-controls" class="pagination-container"></div>
-
-            <!-- Empty State -->
-            <div id="empty-state" class="empty-state" style="display: none;">
-                 <div class="empty-icon">📂</div>
-                <h3>No projects found!</h3>
-                <p>Try adjusting your search or filter criteria</p>
-            </div>
-    <!-- Category Filter -->
-    <div class="category-filter">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="action">Action</button>
-    <button class="filter-btn" data-filter="strategy">Strategy</button>
-    <button class="filter-btn" data-filter="puzzle">Puzzle</button>
-    <button class="filter-btn" data-filter="utility">Utility</button>
-
-    <!-- NEW -->
-    <button id="clear-filters" class="clear-btn">Clear</button>
-</div>
-
-
-    <!-- Projects Grid -->
-    <!-- Projects Grid -->
-<div class="projects-container">
-
-    <!-- Color Palette Generator -->
-    <a href="./projects/color-palette-generator/index.html"
-       class="card"
-       data-category="utility"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/color-palette-generator">
-        <div class="card-cover palette-cover"><i class="ri-palette-line"></i></div>
-        <div class="card-content">
-            <div class="card-header-flex">
-                <h3 class="card-heading">Color Palette Generator</h3>
-                <span class="category-tag">Utility</span>
-            </div>
-            <p class="card-description">Generate beautiful random color palettes.</p>
-            <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-        </div>
-    </a>
-
-    <!-- Infinite Runner -->
-    <a href="./projects/InfiniteParallaxRunner/index.html"
-       class="card"
-       data-category="action"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/InfiniteParallaxRunner">
-        <div class="card-cover runner-cover"><i class="ri-gamepad-line"></i></div>
-        <div class="card-content">
-            <div class="card-header-flex">
-                <h3 class="card-heading">Infinite Runner</h3>
-                <span class="category-tag">Action</span>
-            </div>
-            <p class="card-description">Procedural neon runner with parallax.</p>
-            <div class="card-tech"><span>HTML</span><span>Canvas</span><span>JS</span></div>
-        </div>
-    </a>
-
-    <!-- Calculator -->
-    <a href="./projects/calculator/index.html"
-       class="card"
-       data-category="utility"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/calculator">
-        <div class="card-cover calculator-cover"><i class="ri-calculator-line"></i></div>
-        <div class="card-content">
-            <div class="card-header-flex">
-                <h3 class="card-heading">Calculator</h3>
-                <span class="category-tag">Utility</span>
-            </div>
-            <p class="card-description">Basic arithmetic calculator.</p>
-            <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-        </div>
-    </a>
-
-    <!-- Tic Tac Toe -->
-    <a href="./projects/tic-tac-toe/index.html"
-       class="card"
-       data-category="strategy"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/tic-tac-toe">
-        <div class="card-cover tictactoe-cover"><i class="ri-grid-line"></i></div>
-        <div class="card-content">
-            <div class="card-header-flex">
-                <h3 class="card-heading">Tic Tac Toe</h3>
-                <span class="category-tag">Strategy</span>
-            </div>
-            <p class="card-description">Classic 2-player strategy game.</p>
-            <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-        </div>
-    </a>
-
-    <!-- Quiz Game -->
-    <a href="./projects/quiz-game/index.html"
-       class="card"
-       data-category="puzzle"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/quiz-game">
-        <div class="card-cover quiz-cover"><i class="ri-question-line"></i></div>
-        <div class="card-content">
-            <div class="card-header-flex">
-                <h3 class="card-heading">Quiz Game</h3>
-                <span class="category-tag">Puzzle</span>
-            </div>
-            <p class="card-description">MCQ quiz with timer.</p>
-            <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-        </div>
-    </a>
-
-    <!-- Weather App -->
-    <a href="./projects/WeatherApp/index.html"
-       class="card"
-       data-category="utility"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/WeatherApp">
-        <div class="card-cover weather-cover"><i class="ri-sun-cloudy-line"></i></div>
-        <div class="card-content">
-            <div class="card-header-flex">
-                <h3 class="card-heading">Weather App</h3>
-                <span class="category-tag">Utility</span>
-            </div>
-            <p class="card-description">Glassmorphism weather dashboard.</p>
-            <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span><span>API</span></div>
-        </div>
-    </a>
-
-    <!-- Pomodoro Timer -->
-    <a href="./projects/PomodoroTimer/index.html"
-       class="card"
-       data-category="utility"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/PomodoroTimer">
-        <div class="card-cover" style="background:#4f46e5;display:flex;align-items:center;justify-content:center">
-            <i class="ri-timer-flash-line" style="font-size:3rem;color:white"></i>
-        </div>
-        <div class="card-content">
-            <div class="card-header-flex">
-                <h3 class="card-heading">Pomodoro Timer</h3>
-                <span class="category-tag">Utility</span>
-            </div>
-            <p class="card-description">Work & break productivity timer.</p>
-            <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-        </div>
-    </a>
-
-    <!-- QR Code Generator -->
-    <a href="./projects/qr-code-generator/index.html"
-       class="card"
-       data-category="utility"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/qr-code-generator">
-        <div class="card-cover" style="background:#d1faf6;display:flex;align-items:center;justify-content:center">
-            <i class="ri-qr-code-line" style="font-size:3rem;color:black"></i>
-        </div>
-        <div class="card-content">
-            <div class="card-header-flex">
-                <h3 class="card-heading">QR Code Generator</h3>
-                <span class="category-tag">Utility</span>
-            </div>
-            <p class="card-description">Generate and download QR codes.</p>
-            <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span><span>API</span></div>
-        </div>
-    </a>
-
-    <!-- Kanban Board -->
-    <a href="./projects/kanban-board/index.html"
-       class="card"
-       data-category="utility"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/kanban-board">
-        <div class="card-cover" style="background:#667eea;display:flex;align-items:center;justify-content:center">
-            <i class="ri-kanban-view" style="font-size:3rem;color:white"></i>
-        </div>
-        <div class="card-content">
-            <div class="card-header-flex">
-                <h3 class="card-heading">Kanban Board</h3>
-                <span class="category-tag">Utility</span>
-            </div>
-        </a>
-
-        <!-- Memory Game - Colors -->
-        <a href="./projects/Memory-Game(Colors)/index.html" class="card" data-category="utility">
-            <div class="card-cover"
-                style="background:#fdf2f8; display:flex; align-items:center; justify-content:center; border-bottom: 1px solid #fce7f3;">
-                <i class="ri-brain-line" style="font-size:3rem; color:#db2777"></i>
-            </div>
-            <div class="card-content">
-                <div class="card-header-flex">
-                    <h3 class="card-heading">Memory Game - Color's</h3>
-                    <span class="category-tag">Memory</span>
+                    <p class="card-description">Clean monthly calendar view with navigation.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
                 </div>
-                <p class="card-description">Follow the memory Line track with color's.</p>
-                <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-            </div>
-        </a>
-        <!-- Snake Game -->
-<a href="./projects/snake-game/index.html" class="card" data-category="game">
-    <div class="card-cover" style="background:#22c55e;display:flex;align-items:center;justify-content:center">
-        <i class="ri-gamepad-line" style="font-size:3rem;color:white"></i>
-    </div>
-    <div class="card-content">
-        <div class="card-header-flex">
-            <h3 class="card-heading">Snake Game</h3>
-            <span class="category-tag">Game</span>
-        </div>
-    </a>
-
-    <!-- Snake Game -->
-    <a href="./projects/snake-game/index.html"
-       class="card"
-       data-category="game"
-       data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/snake-game">
-        <div class="card-cover" style="background:#22c55e;display:flex;align-items:center;justify-content:center">
-            <i class="ri-gamepad-line" style="font-size:3rem;color:white"></i>
             </a>
 
+
+            <!-- Color Palette Generator -->
+            <a href="./projects/color-palette-generator/index.html" class="card" data-category="utility"
+                data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/color-palette-generator">
+                <div class="card-cover palette-cover"><i class="ri-palette-line"></i></div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Color Palette Generator</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+                    <p class="card-description">Generate beautiful random color palettes.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
+            </a>
+
+            <!-- Infinite Runner -->
+            <a href="./projects/InfiniteParallaxRunner/index.html" class="card" data-category="action"
+                data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/InfiniteParallaxRunner">
+                <div class="card-cover runner-cover"><i class="ri-gamepad-line"></i></div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Infinite Runner</h3>
+                        <span class="category-tag">Action</span>
+                    </div>
+                    <p class="card-description">Procedural neon runner with parallax.</p>
+                    <div class="card-tech"><span>HTML</span><span>Canvas</span><span>JS</span></div>
+                </div>
+            </a>
+
+            <!-- Calculator -->
+            <a href="./projects/calculator/index.html" class="card" data-category="utility"
+                data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/calculator">
+                <div class="card-cover calculator-cover"><i class="ri-calculator-line"></i></div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Calculator</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+                    <p class="card-description">Basic arithmetic calculator.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
+            </a>
+
+            <!-- Tic Tac Toe -->
+            <a href="./projects/tic-tac-toe/index.html" class="card" data-category="strategy"
+                data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/tic-tac-toe">
+                <div class="card-cover tictactoe-cover"><i class="ri-grid-line"></i></div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Tic Tac Toe</h3>
+                        <span class="category-tag">Strategy</span>
+                    </div>
+                    <p class="card-description">Classic 2-player strategy game.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
+            </a>
+
+            <!-- Quiz Game -->
+            <a href="./projects/quiz-game/index.html" class="card" data-category="puzzle"
+                data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/quiz-game">
+                <div class="card-cover quiz-cover"><i class="ri-question-line"></i></div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Quiz Game</h3>
+                        <span class="category-tag">Puzzle</span>
+                    </div>
+                    <p class="card-description">MCQ quiz with timer.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
+            </a>
+
+            <!-- Weather App -->
+            <a href="./projects/WeatherApp/index.html" class="card" data-category="utility"
+                data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/WeatherApp">
+                <div class="card-cover weather-cover"><i class="ri-sun-cloudy-line"></i></div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Weather App</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+                    <p class="card-description">Glassmorphism weather dashboard.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span><span>API</span></div>
+                </div>
+            </a>
+
+            <!-- Pomodoro Timer -->
+            <a href="./projects/PomodoroTimer/index.html" class="card" data-category="utility"
+                data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/PomodoroTimer">
+                <div class="card-cover"
+                    style="background:#4f46e5;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-timer-flash-line" style="font-size:3rem;color:white"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Pomodoro Timer</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+                    <p class="card-description">Work & break productivity timer.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
+            </a>
+
+            <!-- QR Code Generator -->
+            <a href="./projects/qr-code-generator/index.html" class="card" data-category="utility"
+                data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/qr-code-generator">
+                <div class="card-cover"
+                    style="background:#d1faf6;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-qr-code-line" style="font-size:3rem;color:black"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">QR Code Generator</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+                    <p class="card-description">Generate and download QR codes.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span><span>API</span></div>
+                </div>
+            </a>
+
+            <!-- Kanban Board -->
+            <a href="./projects/kanban-board/index.html" class="card" data-category="utility"
+                data-github="https://github.com/YadavAkhileshh/OpenPlayground/tree/main/projects/kanban-board">
+                <div class="card-cover"
+                    style="background:#667eea;display:flex;align-items:center;justify-content:center">
+                    <i class="ri-kanban-view" style="font-size:3rem;color:white"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Kanban Board</h3>
+                        <span class="category-tag">Utility</span>
+                    </div>
+                    <p class="card-description">Drag-and-drop task board with local storage.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
+            </a>
             <!-- Keyboard Key Detector -->
             <a href="./projects/keyboard-key-detector/index.html" class="card" data-category="utility">
-                <div class="card-cover keyboard-key-cover" ><i class="ri-keyboard-line"></i></div>
+                <div class="card-cover keyboard-key-cover"><i class="ri-keyboard-line"></i></div>
                 <div class="card-content">
                     <div class="card-header-flex">
                         <h3 class="card-heading">Keyboard Key Detector</h3>
@@ -1434,25 +1094,28 @@
                     <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
                 </div>
             </a>
-            
             <!-- Whack a Box -->
-            <a href="./projects/Whack a Box/index.html" class="card" data-category="utility">
+            <a href="./projects/Whack a Box/index.html" class="card" data-category="game">
                 <div class="card-cover" style="background:#764ba2; color:white"><i class="ri-gamepad-line"></i></div>
                 <div class="card-content">
                     <div class="card-header-flex">
                         <h3 class="card-heading">Whack a Box</h3>
-                        <span class="category-tag">Utility</span>
+                        <span class="category-tag">Game</span>
                     </div>
+                    <p class="card-description">Whack as fast as you can but be aware of Red.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
             </a>
+
             <!-- Smart Expense Tracker -->
-            <a href="./projects/smart-expense-tracker/index.html" class="card" data-category="finance">
+            <a href="./projects/smart-expense-tracker/index.html" class="card" data-category="utility">
                 <div class="card-cover expense-cover">
                     <i class="ri-wallet-3-line"></i>
                 </div>
                 <div class="card-content">
                     <div class="card-header-flex">
                         <h3 class="card-heading">Smart Expense Tracker</h3>
-                        <span class="category-tag">Finance</span>
+                        <span class="category-tag">Utility</span>
                     </div>
                     <p class="card-description">Track daily expenses with category-wise insights and a clean interface.
                     </p>
@@ -1461,154 +1124,88 @@
                         <span>CSS</span>
                         <span>JavaScript</span>
                     </div>
-                    <div class="card-content">
-                        <div class="card-header-flex">
-                            <h3 class="card-heading">Weather App</h3>
-                            <span class="category-tag">Utility</span>
-                        </div>
-                        <p class="card-description">Instant weather dashboard with dark glassmorphism UI and real-time API data.</p>
-                        <div class="card-tech">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JS</span>
-                            <span>API</span>
-                        </div>
-                    </div>
-                </a>
-                <!-- EduConnect Website Project -->
-                <a href="./projects/EduConnect/EduConnect/index.html" class="card" data-category="utility">
-                    <div class="card-cover educonnect-cover">
-                        <i class="ri-book-open-line"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header-flex">
-                            <h3 class="card-heading">EduConnect Website</h3>
-                            <span class="category-tag">Utility</span>
-                        </div>
-                        <p class="card-description">
-                            Modern education platform UI with responsive design and clean navigation.
-                        </p>
-                        <div class="card-tech">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Rock Paper Scissors Project -->
-                <a href="./projects/rock-paper-scissor/index.html" class="card" data-category="game">
-                    <div class="card-cover rps-cover">
-                        <i class="ri-gamepad-line"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header-flex">
-                            <h3 class="card-heading">Rock Paper Scissors</h3>
-                            <span class="category-tag">Game</span>
-                        </div>
-                        <p class="card-description">
-                            A fun Rock Paper Scissors game where users play against the computer with instant results.
-                        </p>
-                        <div class="card-tech">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Typing Duel Game Project -->
-                <a href="./projects/Typing duel game/index.html" class="card" data-category="game">
-                    <div class="card-cover typing-cover">
-                        <i class="ri-keyboard-line"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-header-flex">
-                            <h3 class="card-heading">Typing Duel</h3>
-                            <span class="category-tag">Game</span>
-                        </div>
-                        <p class="card-description">
-                            A fast-paced typing speed game with difficulty levels, real-time feedback, and WPM tracking.
-                        </p>
-                        <div class="card-tech">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                </a>
-
-
                 </div>
             </a>
 
-            <!-- Drum-Kit-Activity -->
-            <a href="./projects/Drum-Kit-Activity/index.html" class="card" data-category="puzzle">
+            <!-- Rock Paper Scissors -->
+            <a href="./projects/rock-paper-scissor/index.html" class="card" data-category="game">
+                <div class="card-cover rps-cover">
+                    <i class="ri-gamepad-line"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Rock Paper Scissors</h3>
+                        <span class="category-tag">Game</span>
+                    </div>
+                    <p class="card-description">A fun Rock Paper Scissors game where users play against the computer
+                        with instant results.</p>
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Typing Duel Game -->
+            <a href="./projects/Typing duel game/index.html" class="card" data-category="game">
+                <div class="card-cover typing-cover">
+                    <i class="ri-keyboard-line"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Typing Duel</h3>
+                        <span class="category-tag">Game</span>
+                    </div>
+                    <p class="card-description">A fast-paced typing speed game with difficulty levels, real-time
+                        feedback, and WPM tracking.</p>
+                    <div class="card-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Drum Kit Activity -->
+            <a href="./projects/Drum-Kit-Activity/index.html" class="card" data-category="game">
                 <div class="card-cover" style="background:#fdf2f8; color:#db2777"><i class="ri-drum-line"></i></div>
                 <div class="card-content">
                     <div class="card-header-flex">
-                        <h3 class="card-heading">Drum-Kit-Activity</h3>
-                        <span class="category-tag">game</span>
+                        <h3 class="card-heading">Drum Kit Activity</h3>
+                        <span class="category-tag">Game</span>
                     </div>
-                    <p class="card-description">Press keys for Drumming.</p>
+                    <p class="card-description">Press keys for drumming.</p>
+                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
+            </a>
+
+            <!-- Hover Maze -->
+            <a href="./projects/Hover maze/index.html" class="card" data-category="puzzle">
+                <div class="card-cover" style="background:#764ba2; color:white"><i class="ri-gamepad-line"></i></div>
+                <div class="card-content">
+                    <div class="card-header-flex">
+                        <h3 class="card-heading">Hover Maze</h3>
+                        <span class="category-tag">Puzzle</span>
+                    </div>
+                    <p class="card-description">Draw a continuous path from Start to Finish without touching the walls
+                        or leaving the maze.</p>
                     <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
                 </div>
             </a>
         </div>
 
-
         <!-- Pagination Controls -->
         <div class="pagination-container" id="pagination-controls"></div>
-
-        <!-- How to Contribute Section -->
-        <div id="contribute" class="contribute-section">
-            <h3>How to Contribute</h3>
-            <p>Ready to showcase your project? Follow these simple steps:</p>
-            <div class="steps">
-                <div class="step-card">
-                    <div class="step-icon"><i class="ri-git-branch-line"></i></div>
-                    <h4>Fork & Clone</h4>
-                    <p>Fork the repository and clone it locally</p>
-                    <div class="terminal-window">
-                        <code>git clone https://github.com/your-username/OpenPlayground</code>
-                    </div>
-                    <p class="card-description">Whack as fast as you can but be aware of Red.</p>
-                    <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-                </div>
-                </a>
-            </div>
-
-            <!-- Pagination -->
-            <div class="pagination-container" id="pagination-controls"></div>
     </section>
 
-    <!-- Contribute Section -->
+    <!-- How to Contribute Section -->
     <section id="contribute" class="contribute-section">
-        <div class="contribute-glow"></div>
         <div class="section-header">
-            <span class="section-badge">Get Involved</span>
+            <span class="section-badge">Contribute</span>
             <h2 class="section-title">How to <span class="gradient-text">Contribute</span></h2>
-            <p class="section-subtitle">Follow these simple steps to start contributing</p>
+            <p class="section-subtitle">Ready to showcase your project? Follow these simple steps:</p>
         </div>
-    </a>
-
-</div>
-
-        <!-- EduConnect -->
-        <a href="./projects/EduConnect/EduConnect/index.html" class="card" data-category="utility">
-            <div class="card-cover" style="background:#3b82f6;display:flex;align-items:center;justify-content:center">
-                <i class="ri-graduation-cap-line" style="font-size:3rem;color:white"></i>
-            </div>
-            <div class="card-content">
-                <div class="card-header-flex">
-                    <h3 class="card-heading">EduConnect</h3>
-                    <span class="category-tag">Utility</span>
-                </div>
-                <p class="card-description">Educational platform connecting students and resources.</p>
-                <div class="card-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-            </div>
-        </a>
-
         <div class="steps-grid">
             <div class="step-card">
                 <div class="step-number">1</div>
@@ -1671,10 +1268,173 @@
         </div>
 
         <div class="contributors-grid" id="contributors-grid">
-            <div class="loading-skeleton">
-                <div class="skeleton-avatar"></div>
-                <div class="skeleton-text"></div>
-            </div>
+            <a href="https://github.com/YadavAkhileshh" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/126486217?v=4" alt="YadavAkhileshh"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">YadavAkhileshh</span>
+            </a>
+            <a href="https://github.com/hitdepani" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/225039671?v=4" alt="hitdepani"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">hitdepani</span>
+            </a>
+            <a href="https://github.com/magic-peach" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/146705736?v=4" alt="magic-peach"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">magic-peach</span>
+            </a>
+            <a href="https://github.com/neeru24" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/161798182?v=4" alt="neeru24"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">neeru24</span>
+            </a>
+            <a href="https://github.com/Satyam12x" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/186934930?v=4" alt="Satyam12x"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Satyam12x</span>
+            </a>
+            <a href="https://github.com/Siddheshgite15" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/166038412?v=4" alt="Siddheshgite15"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Siddheshgite15</span>
+            </a>
+            <a href="https://github.com/trivedikavya" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/149308388?v=4" alt="trivedikavya"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">trivedikavya</span>
+            </a>
+            <a href="https://github.com/SunilBaghel002" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/180804109?v=4" alt="SunilBaghel002"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">SunilBaghel002</span>
+            </a>
+            <a href="https://github.com/Rahul-kumar-modi" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/169649494?v=4" alt="Rahul-kumar-modi"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Rahul-kumar-modi</span>
+            </a>
+            <a href="https://github.com/Monasri29-hub" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/189128732?v=4" alt="Monasri29-hub"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Monasri29-hub</span>
+            </a>
+            <a href="https://github.com/ubanand36" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/214272943?v=4" alt="ubanand36"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">ubanand36</span>
+            </a>
+            <a href="https://github.com/Aditya8369" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/178887069?v=4" alt="Aditya8369"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Aditya8369</span>
+            </a>
+            <a href="https://github.com/ryn-001" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/125867773?v=4" alt="ryn-001"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">ryn-001</span>
+            </a>
+            <a href="https://github.com/Sheetal-cell" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/183822317?v=4" alt="Sheetal-cell"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Sheetal-cell</span>
+            </a>
+            <a href="https://github.com/ManasCodez" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/139001524?v=4" alt="ManasCodez"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">ManasCodez</span>
+            </a>
+            <a href="https://github.com/Sneha-Amballa" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/196505110?v=4" alt="Sneha-Amballa"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Sneha-Amballa</span>
+            </a>
+            <a href="https://github.com/keerthipriya03" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/172122384?v=4" alt="keerthipriya03"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">keerthipriya03</span>
+            </a>
+            <a href="https://github.com/ShashankSaga" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/182335945?v=4" alt="ShashankSaga"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">ShashankSaga</span>
+            </a>
+            <a href="https://github.com/VishalRaut2106" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/155873551?v=4" alt="VishalRaut2106"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">VishalRaut2106</span>
+            </a>
+            <a href="https://github.com/Riya-Kharade" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/191875350?v=4" alt="Riya-Kharade"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Riya-Kharade</span>
+            </a>
+            <a href="https://github.com/sahoo-tech" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/179259731?v=4" alt="sahoo-tech"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">sahoo-tech</span>
+            </a>
+            <a href="https://github.com/Inkesk-Dozing" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/177619807?v=4" alt="Inkesk-Dozing"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Inkesk-Dozing</span>
+            </a>
+            <a href="https://github.com/srimadhuri18" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/201980835?v=4" alt="srimadhuri18"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">srimadhuri18</span>
+            </a>
+            <a href="https://github.com/ayushi826" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/195586771?v=4" alt="ayushi826"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">ayushi826</span>
+            </a>
+            <a href="https://github.com/vishalraut21066" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/232575616?v=4" alt="vishalraut21066"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">vishalraut21066</span>
+            </a>
+            <a href="https://github.com/sakthijaw" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/167529826?v=4" alt="sakthijaw"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">sakthijaw</span>
+            </a>
+            <a href="https://github.com/Notoriousmb10" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/147401632?v=4" alt="Notoriousmb10"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Notoriousmb10</span>
+            </a>
+            <a href="https://github.com/rohitshinde-tech" target="_blank" rel="noopener noreferrer"
+                class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/222961387?v=4" alt="rohitshinde-tech"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">rohitshinde-tech</span>
+            </a>
+            <a href="https://github.com/Nitya-003" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/181471078?v=4" alt="Nitya-003"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Nitya-003</span>
+            </a>
+            <a href="https://github.com/Mayankvya" target="_blank" rel="noopener noreferrer" class="contributor-card">
+                <img src="https://avatars.githubusercontent.com/u/85663310?v=4" alt="Mayankvya"
+                    class="contributor-avatar" loading="lazy">
+                <span class="contributor-name">Mayankvya</span>
+            </a>
         </div>
     </section>
 
@@ -1683,144 +1443,153 @@
         <i class="ri-arrow-up-line"></i>
     </button>
 
-<footer class="footer">
-    <div class="footer-container">
-        <!-- Footer Grid -->
-        <div class="footer-content">
-            <!-- Branding Section -->
-            <div class="footer-section footer-branding">
-                <h4 class="footer-logo">OpenPlayground</h4>
-                <p class="footer-description">
-                    A community-driven platform where developers showcase their creativity through interactive web projects. Build, share, and explore amazing projects.
-                </p>
-                <p class="footer-copyright">© 2026 OpenPlayground. Built by the community.</p>
-            </div>
-
-            <!-- Navigation Section -->
-            <div class="footer-section">
-                <h4 class="footer-section-title">Navigation</h4>
-                <ul class="footer-links">
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contribute">Contribute</a></li>
-                    <li><a href="#contributors">Contributors</a></li>
-                    <li><a href="https://github.com/YadavAkhileshh/OpenPlayground" target="_blank">GitHub</a></li>
-                </ul>
-            </div>
-
-            <!-- Resources Section -->
-            <div class="footer-section">
-                <h4 class="footer-section-title">Resources</h4>
-                <ul class="footer-links">
-                    <li><a href="https://github.com/YadavAkhileshh/OpenPlayground/blob/main/README.md" target="_blank">Documentation</a></li>
-                    <li><a href="https://github.com/YadavAkhileshh/OpenPlayground/blob/main/CONTRIBUTING.md" target="_blank">Contributing Guide</a></li>
-                    <li><a href="https://github.com/YadavAkhileshh/OpenPlayground/blob/main/CODE_OF_CONDUCT.md" target="_blank">Code of Conduct</a></li>
-                    <li><a href="https://github.com/YadavAkhileshh/OpenPlayground/issues" target="_blank">Report Issue</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact & Social Section -->
-            <div class="footer-section footer-social-section">
-                <h4 class="footer-section-title">Connect</h4>
-                <div class="footer-social-links">
-                    <a href="https://github.com/YadavAkhileshh/OpenPlayground" target="_blank" class="social-link" aria-label="GitHub">
-                        <i class="ri-github-fill"></i>
-                    </a>
-                    <a href="https://twitter.com/OpenPlayground" target="_blank" class="social-link" aria-label="Twitter">
-                        <i class="ri-twitter-x-line"></i>
-                    </a>
-                    <a href="https://discord.gg/openplayground" target="_blank" class="social-link" aria-label="Discord">
-                        <i class="ri-discord-fill"></i>
-                    </a>
-                    <a href="mailto:hello@openplayground.dev" class="social-link" aria-label="Email">
-                        <i class="ri-mail-line"></i>
-                    </a>
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Footer Grid -->
+            <div class="footer-content">
+                <!-- Branding Section -->
+                <div class="footer-section footer-branding">
+                    <h4 class="footer-logo">OpenPlayground</h4>
+                    <p class="footer-description">
+                        A community-driven platform where developers showcase their creativity through interactive web
+                        projects. Build, share, and explore amazing projects.
+                    </p>
+                    <p class="footer-copyright">© 2026 OpenPlayground. Built by the community.</p>
                 </div>
-                <div class="footer-contact-info">
-                    <p><strong>Email:</strong> <a href="mailto:hello@openplayground.dev">hello@openplayground.dev</a></p>
+
+                <!-- Navigation Section -->
+                <div class="footer-section">
+                    <h4 class="footer-section-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contribute">Contribute</a></li>
+                        <li><a href="#contributors">Contributors</a></li>
+                        <li><a href="https://github.com/YadavAkhileshh/OpenPlayground" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h4 class="footer-section-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/YadavAkhileshh/OpenPlayground/blob/main/README.md"
+                                target="_blank">Documentation</a></li>
+                        <li><a href="https://github.com/YadavAkhileshh/OpenPlayground/blob/main/CONTRIBUTING.md"
+                                target="_blank">Contributing Guide</a></li>
+                        <li><a href="https://github.com/YadavAkhileshh/OpenPlayground/blob/main/CODE_OF_CONDUCT.md"
+                                target="_blank">Code of Conduct</a></li>
+                        <li><a href="https://github.com/YadavAkhileshh/OpenPlayground/issues" target="_blank">Report
+                                Issue</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Social Section -->
+                <div class="footer-section footer-social-section">
+                    <h4 class="footer-section-title">Connect</h4>
+                    <div class="footer-social-links">
+                        <a href="https://github.com/YadavAkhileshh/OpenPlayground" target="_blank" class="social-link"
+                            aria-label="GitHub">
+                            <i class="ri-github-fill"></i>
+                        </a>
+                        <a href="https://twitter.com/OpenPlayground" target="_blank" class="social-link"
+                            aria-label="Twitter">
+                            <i class="ri-twitter-x-line"></i>
+                        </a>
+                        <a href="https://discord.gg/openplayground" target="_blank" class="social-link"
+                            aria-label="Discord">
+                            <i class="ri-discord-fill"></i>
+                        </a>
+                        <a href="mailto:hello@openplayground.dev" class="social-link" aria-label="Email">
+                            <i class="ri-mail-line"></i>
+                        </a>
+                    </div>
+                    <div class="footer-contact-info">
+                        <p><strong>Email:</strong> <a
+                                href="mailto:hello@openplayground.dev">hello@openplayground.dev</a></p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-<script>
-    const cards = Array.from(document.querySelectorAll(".projects-container .card"));
-    const paginationContainer = document.getElementById("pagination-controls");
-  
-    let currentPage = 1;
-    let cardsPerPage = 9;
-  
-    function getCardsPerPage() {
-      const container = document.querySelector(".projects-container");
-      const card = container.querySelector(".card");
-      if (!card) return 9;
-  
-      const containerWidth = container.clientWidth;
-      const cardWidth = card.clientWidth + 24; // include gap
-      const columns = Math.floor(containerWidth / cardWidth);
-  
-      // Always fill complete rows (3 rows)
-      return columns * 3;
-    }
-  
-    function showPage(page) {
-      currentPage = page;
-      cardsPerPage = getCardsPerPage();
-  
-      const start = (page - 1) * cardsPerPage;
-      const end = start + cardsPerPage;
-  
-      cards.forEach((card, index) => {
-        card.classList.toggle("hidden", index < start || index >= end);
-      });
-  
-      updateActiveButton();
-    }
-  
-    function createPagination() {
-      paginationContainer.innerHTML = "";
-      cardsPerPage = getCardsPerPage();
-      const totalPages = Math.ceil(cards.length / cardsPerPage);
-  
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        btn.addEventListener("click", () => showPage(i));
-        paginationContainer.appendChild(btn);
-      }
-    }
-  
-    function updateActiveButton() {
-      paginationContainer.querySelectorAll("button").forEach((btn, i) => {
-        btn.classList.toggle("active", i + 1 === currentPage);
-      });
-    }
-  
-    // Recalculate on resize
-    window.addEventListener("resize", () => {
-      createPagination();
-      showPage(1);
-    });
-  
-    // Init
-    createPagination();
-    showPage(1);
-  </script>
-  
-  
+            <script>
+                const cards = Array.from(document.querySelectorAll(".projects-container .card"));
+                const paginationContainer = document.getElementById("pagination-controls");
+
+                let currentPage = 1;
+                let cardsPerPage = 9;
+
+                function getCardsPerPage() {
+                    const container = document.querySelector(".projects-container");
+                    const card = container.querySelector(".card");
+                    if (!card) return 9;
+
+                    const containerWidth = container.clientWidth;
+                    const cardWidth = card.clientWidth + 24; // include gap
+                    const columns = Math.floor(containerWidth / cardWidth);
+
+                    // Always fill complete rows (3 rows)
+                    return columns * 3;
+                }
+
+                function showPage(page) {
+                    currentPage = page;
+                    cardsPerPage = getCardsPerPage();
+
+                    const start = (page - 1) * cardsPerPage;
+                    const end = start + cardsPerPage;
+
+                    cards.forEach((card, index) => {
+                        card.classList.toggle("hidden", index < start || index >= end);
+                    });
+
+                    updateActiveButton();
+                }
+
+                function createPagination() {
+                    paginationContainer.innerHTML = "";
+                    cardsPerPage = getCardsPerPage();
+                    const totalPages = Math.ceil(cards.length / cardsPerPage);
+
+                    for (let i = 1; i <= totalPages; i++) {
+                        const btn = document.createElement("button");
+                        btn.textContent = i;
+                        btn.addEventListener("click", () => showPage(i));
+                        paginationContainer.appendChild(btn);
+                    }
+                }
+
+                function updateActiveButton() {
+                    paginationContainer.querySelectorAll("button").forEach((btn, i) => {
+                        btn.classList.toggle("active", i + 1 === currentPage);
+                    });
+                }
+
+                // Recalculate on resize
+                window.addEventListener("resize", () => {
+                    createPagination();
+                    showPage(1);
+                });
+
+                // Init
+                createPagination();
+                showPage(1);
+            </script>
+
+
 </body>
 <script src="./js/app.js"></script>
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <p class="footer-bottom-text">Made with <span class="heart">♥</span> by the OpenPlayground community</p>
-            <div class="footer-divider"></div>
-            <p class="footer-bottom-links">
-                <a href="https://github.com/YadavAkhileshh/OpenPlayground/blob/main/LICENSE" target="_blank">License</a>
-                <span class="divider">•</span>
-                <a href="#projects">Back to Top</a>
-            </p>
-        </div>
-    </footer>
+<!-- Footer Bottom -->
+<div class="footer-bottom">
+    <p class="footer-bottom-text">Made with <span class="heart">♥</span> by the OpenPlayground community</p>
+    <div class="footer-divider"></div>
+    <p class="footer-bottom-links">
+        <a href="https://github.com/YadavAkhileshh/OpenPlayground/blob/main/LICENSE" target="_blank">License</a>
+        <span class="divider">•</span>
+        <a href="#projects">Back to Top</a>
+    </p>
+</div>
+</footer>
 
-    <script src="./js/app.js"></script>
+<script src="./js/app.js"></script>
 </body>
 
 </html>
