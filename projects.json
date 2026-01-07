@@ -1,6 +1,26 @@
 [
 
   {
+    "title": "Attention Drift Visualizer",
+    "category": "productivity",
+    "description": "A visualization tool that shows attention patterns based on interaction gaps and tab switches for focus awareness.",
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "link": "./projects/AttentionDriftVisualizer/index.html",
+    "icon": "ri-focus-line",
+    "coverStyle": "background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); color:#5b21b6;"
+  },
+
+  {
+    "title": "Reality Check Simulator",
+    "category": "productivity",
+    "description": "A time estimation awareness tool that compares predicted vs actual task durations to improve time management skills.",
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "link": "./projects/RealityCheckSimulator/index.html",
+    "icon": "ri-time-line",
+    "coverStyle": "background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); color:#0c4a6e;"
+  },
+  
+  {
     "title": "Pagination Component",
     "category": "utility",
     "description": "A reusable, responsive pagination component for handling large datasets with configurable options.",
@@ -9,7 +29,7 @@
     "icon": "ri-file-list-3-line",
     "coverStyle": "background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%); color:#1e40af;"
   },
-  
+
   {
     "title": "Drag and Drop List Manager",
     "category": "utility",
