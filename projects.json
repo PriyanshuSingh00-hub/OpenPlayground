@@ -1157,6 +1157,15 @@
     "coverStyle": "background:#afdfff; color:#000;"
   },
   {
+    "title": "Social Media Dashboard",
+    "category": "utility",
+    "description": "Consolidate social media metrics in one dashboard with dark/light mode.",
+    "tech": ["HTML", "CSS", "JS"],
+    "link": "./projects/SocialMediaDashboard/index.html",
+    "icon": "ri-file-copy-2-line",
+    "coverStyle": "background:#7a1050; color:white;"
+  },
+  {
     "title": "PDF Merger",
     "category": "utility",
     "description": "Merge multiple PDF files into one document directly in your browser.",
