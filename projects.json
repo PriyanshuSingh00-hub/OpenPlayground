@@ -143,6 +143,19 @@
     "coverStyle": "background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: #7c2d12;"
   },
   {
+    "title": "Image-Particle Converter",
+    "category": "utility",
+    "description": "Transform any image into an interactive atom-like particle system.",
+    "tech": [
+      "HTML",
+      "Canvas",
+      "JS"
+    ],
+    "link": "./projects/image-particle converter/index.html",
+    "icon": "ri-image-circle-line",
+    "coverStyle": "background: radial-gradient(circle at center, #1e293b, #0f172a); color: #6366f1;"
+  },
+  {
     "title": "Password Generator",
     "category": "utility",
     "description": "Generate secure random passwords.",
