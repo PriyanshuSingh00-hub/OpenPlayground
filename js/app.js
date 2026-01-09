@@ -389,7 +389,63 @@ function showToast(message) {
 // ===============================
 // Initialization
 // ===============================
+function initCustomDropdown() {
+    const wrapper = document.querySelector('.custom-select-wrapper');
+    const customSelect = document.querySelector('.custom-select');
+    const trigger = document.querySelector('.custom-select-trigger');
+    const options = document.querySelectorAll('.custom-option');
+    const hiddenSelect = document.getElementById('project-sort');
+
+    if (!wrapper || !trigger || !options.length || !hiddenSelect) return;
+
+    // Toggle dropdown
+    trigger.addEventListener('click', () => {
+        customSelect.classList.toggle('open');
+    });
+
+    // Handle option click
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            const value = option.getAttribute('data-value');
+            const text = option.textContent;
+
+            // Update selected class
+            options.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+
+            // Update trigger text
+            trigger.querySelector('.selected-text').textContent = text;
+
+            // Update hidden select used by app logic
+            hiddenSelect.value = value;
+            // Trigger change event for app logic
+            hiddenSelect.dispatchEvent(new Event('change'));
+
+            // Close dropdown
+            customSelect.classList.remove('open');
+        });
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+            customSelect.classList.remove('open');
+        }
+    });
+
+    // Keyboard support
+    trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            customSelect.classList.toggle('open');
+        }
+    });
+}
+
 function initEventListeners() {
+    // Initialize custom dropdown
+    initCustomDropdown();
+
     const elements = getElements();
 
     // Search
