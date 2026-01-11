@@ -1,5 +1,19 @@
 [
   {
+    "title": "Advanced To-Do App",
+    "category": "productivity",
+    "description": "Feature-rich task management application with streak tracking, project organization, calendar integration, and dark mode support for enhanced productivity.",
+    "tech": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "LocalStorage"
+    ],
+    "link": "./projects/Advanced To-Do App/index.html",
+    "icon": "ri-task-line",
+    "coverStyle": "background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white;"
+  },
+  {
     "title": "Sound Reaction System",
     "category": "utility",
     "description": "Adaptive audio interaction module with environmental calibration, live decibel monitoring, and adjustable sensitivity controls.",
