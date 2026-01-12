@@ -1406,6 +1406,19 @@
     "icon": "ri-user-smile-line",
     "coverStyle": "background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #7c2d12;"
   },
+   {
+    "title": "Markdown Previewer",
+    "category": "utility",
+    "description": "Real-time markdown preview editor with syntax highlighting.",
+    "tech": [
+      "HTML",
+      "CSS",
+      "JS"
+    ],
+    "link": "./projects/Markdown-Previewer/index.html",
+    "icon": "ri-user-smile-line",
+    "coverStyle": "background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #7c2d12;"
+  },
   {
     "title": "Email Validation",
     "category": "utility",
