@@ -1657,8 +1657,8 @@
   "link": "./projects/Random_Encounter_Generator/index.html",
   "icon": "ri-sword-line",
   "coverStyle": "background: linear-gradient(135deg, #064e3b 0%, #16a34a 100%); color:#ecfdf5;"
-}
-
+},
+{
     "title": "Drawing Canvas",
     "category": "game",
     "description": "A simple interactive canvas that lets users draw freely with adjustable brush size and color.",

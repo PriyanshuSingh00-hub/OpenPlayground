@@ -1,27 +1,63 @@
-name: Auto Comment on PR
+name: Welcome PR Author
 
 on:
   pull_request_target:
     types: [opened]
 
 permissions:
-  issues: write
   pull-requests: write
+  issues: write
 
 jobs:
-  comment:
+  welcome-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Comment on PR
-        uses: actions/github-script@v6
+      - name: Welcome new PR
+        uses: actions/github-script@v7
         with:
           script: |
-            const prNumber = context.issue.number;
-            const commentBody = `### Thanks for creating a PR for your Issue! ☺️\n\nWe'll review it as soon as possible.\nIn the meantime, please double-check the **file changes** and ensure that **all commits** are accurate.\n\nIf there are any **unresolved review comments**, feel free to resolve them. 🙌🏼`;
+            const prAuthor = context.payload.pull_request.user.login;
+            const prNumber = context.payload.pull_request.number;
+
+            const welcomeMessage = `## 🎉 Thanks for the PR, @${prAuthor}!
+
+We really appreciate you taking the time to contribute to **OpenPlayground**! 💙
+
+---
+
+### ⭐ Love this project?
+**Please give us a star!** It helps the project grow and reach more developers! 🌟
+[![Star this repo](https://img.shields.io/github/stars/YadavAkhileshh/OpenPlayground?style=social)](https://github.com/YadavAkhileshh/OpenPlayground)
+
+---
+
+### ✅ PR Checklist
+Before we review, please ensure:
+- [ ] Your code follows the project's coding standards
+- [ ] All file changes are accurate and intentional
+- [ ] You've tested your changes locally
+- [ ] Any review comments have been addressed
+
+---
+
+### 🚀 Looking for More Ideas & Resources?
+Check out **Linkshala** - Your one-stop destination for:
+- 🧩 New project ideas
+- 📚 Learning resources
+- 🎮 Games & creative inspiration
+- 💡 Developer tools & utilities
+
+🔗 **[Visit Linkshala →](https://linkkshala.vercel.app)**
+
+---
+
+We'll review your PR as soon as possible. Keep up the great work! ✨`;
+
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
-              body: commentBody
+              body: welcomeMessage
             });
-            console.log('Comment added successfully.');
+
+            console.log(`✅ Welcome comment added to PR #${prNumber}`);
