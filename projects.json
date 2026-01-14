@@ -2970,5 +2970,14 @@
     "link": "./projects/Recipe Finder/index.html",
     "icon": "ri-restaurant-2-line",
     "coverStyle": "background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #212121;"
-  }
+  },
+  {
+  "title": "My Stylish To-Do-List",
+  "category": "utility",
+  "description": "Track your everyday tasks, modify & operate with style.",
+  "tech": ["HTML", "CSS", "JavaScript"],
+  "link": "./projects/my-stylish-to-do-list/index.html",
+  "icon": "ri-todo-fill",
+  "coverStyle": "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;"
+}
 ]
