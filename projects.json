@@ -13,6 +13,20 @@
     "icon": "ri-grid-line",
     "coverStyle": "background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white;"
   },
+    {
+  "title": "Mood Picker",
+  "category": "utility",
+  "difficulty": "Intermediate",
+  "description": "An interactive mood picker that lets users select how they’re feeling and receive personalized messages and motivational quotes. Features a clean UI, smooth animations, responsive design, mood-based feedback, and share functionality using the Web Share API.",
+  "tech": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "link": "./projects/MoodPicker/index.html",
+  "icon": "ri-emotion-happy-line",
+  "coverStyle": "background: linear-gradient(135deg, #7db2ed 0%, #4a6fa5 100%); color: white;"
+},
   {
   "title": "Decision Spinner",
   "category": "utility",
