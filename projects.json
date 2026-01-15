@@ -3110,6 +3110,21 @@
     "icon": "ri-brain-line",
     "coverStyle": "background: linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%); color: white;"
   },
+    {
+    "title": "Breakout: Neon Arcade",
+    "category": "game",
+    "difficulty": "Advanced",
+    "description": "A modern, arcade-style Breakout game featuring smooth ball physics, paddle inertia, multi-hit bricks, level progression, and responsive controls. Designed as a polished, fast-paced experience with refined visuals and classic gameplay depth.",
+    "tech": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "link": "./projects/breakout/index.html",
+    "icon": "ri-gamepad-line",
+    "coverStyle": "background: radial-gradient(circle at top, #0f2027 0%, #000 70%); color: #e0f2fe;"
+  },
+
   {
     "title": "Particle Life Simulation",
     "category": "game",
@@ -3200,7 +3215,7 @@
   ],
   "link": "./projects/reflex-pulse/index.html",
   "icon": "ri-focus-3-line",
-  "coverStyle": "background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%); color: #e5e7eb;"
+  "coverStyle": "background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%); color: #e5e7eb;",
   "title": "FlowLogic",
   "category": "Educational",
   "description": "A visual logic builder that allows users to create and connect logic flows using interactive blocks.",
