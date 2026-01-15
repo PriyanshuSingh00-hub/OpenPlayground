@@ -60,6 +60,21 @@ input,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(
 .image-container{position:relative;overflow:hidden;}
 .image-container img{transition:transform 0.2s ease;}
 .image-container:hover img{transform:scale(1.02);}
+/* Accessibility focus styles */
+.btn:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--primary), white 35%);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .card:hover img, .image-container:hover img { transform: none !important; }
+}
+/* Empty state and image error feedback */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:60px;border:1px dashed rgba(0,0,0,.15);border-radius:16px;color:#666;background:rgba(0,0,0,.02);margin:24px}
+.empty-state .title{font-weight:700;font-size:1.2rem;color:var(--text)}
+.img-error{display:none;color:#b00020;font-size:12px;margin-top:6px}
 </style>
 </head>
 <body>
@@ -75,7 +90,7 @@ input,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(
       <i data-lucide="moon" class="icon"></i>
       Toggle
     </button>
-    <button class="btn" onclick="openAdd()">
+    <button class="btn" onclick="openAdd()" aria-label="Add recipe">
       <i data-lucide="plus" class="icon"></i>
       Add Recipe
     </button>
@@ -235,29 +250,41 @@ function getImageUrl(recipe) {
 // Enhanced render function with format validation
 function render(){
  const el=document.getElementById('recipes');el.innerHTML='';
+ if (!recipes || recipes.length === 0) {
+  el.innerHTML = `
+    <div class="empty-state" role="status" aria-live="polite">
+      <i data-lucide="utensils-crossed" class="icon" aria-hidden="true"></i>
+      <div class="title">No recipes yet</div>
+      <p>Add your first recipe to get started.</p>
+      <button class="btn" onclick="openAdd()" aria-label="Add your first recipe"><i data-lucide="plus" class="icon" aria-hidden="true"></i> Add Recipe</button>
+    </div>`;
+  if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+  return;
+ }
  recipes.forEach(r=>{
   const fav=favs.includes(r.id)?'❤️':'🤍';
   const imgUrl = getImageUrl(r);
   const formatBadge = r.requiresPNG ? '<div class="format-badge">🖼️ PNG</div>' : '';
   
-  el.innerHTML+=`<div class="card">
+  el.innerHTML+=`<div class="card" aria-label="Recipe card: ${r.title}">
     <div class="image-wrap">
-      <img src="${imgUrl}" alt="${r.title}" onerror="this.src='${IMAGE_CONFIG.defaultFallback}'">
+      <img src="${imgUrl}" alt="${r.title}" onerror="imageError(this, ${r.id})">
       ${formatBadge}
     </div>
     <div class="info">
       <div class="title-row">
         <h3 class="title"><i data-lucide="utensils" class="icon"></i>${r.title}</h3>
-        <span class="favorite" onclick="favToggle(${r.id})" title="Toggle favorite">${fav}</span>
+        <button class="favorite" aria-label="Toggle favorite for ${r.title}" aria-pressed="${favs.includes(r.id)}" onclick="favToggle(${r.id})">${fav}</button>
       </div>
       <div class="meta">
         <span><i data-lucide="timer" class="icon" style="width:16px;height:16px"></i> ${Math.round((r.time||600)/60)} min</span>
         <span><i data-lucide="list" class="icon" style="width:16px;height:16px"></i> ${r.ingredients.length} items</span>
       </div>
       <div class="divider"></div>
+      <div id="img-error-${r.id}" class="img-error" role="status" aria-live="polite"></div>
       <div class="button-row">
-        <button class="btn" onclick="openRecipe(${r.id})"><i data-lucide="book-open" class="icon"></i>View</button>
-        ${r.requiresPNG ? '<button class="btn secondary" onclick="checkImageFormat(' + r.id + ')"><i data-lucide="scan" class="icon"></i>Check Format</button>' : ''}
+        <button class="btn" onclick="openRecipe(${r.id})" aria-label="View recipe ${r.title}"><i data-lucide="book-open" class="icon"></i>View</button>
+        ${r.requiresPNG ? '<button class="btn secondary" onclick="checkImageFormat(' + r.id + ')" aria-label="Check image format for ' + r.title + '"><i data-lucide="scan" class="icon"></i>Check Format</button>' : ''}
       </div>
     </div>
   </div>`
@@ -309,10 +336,10 @@ function openRecipe(id){
    '<div class="format-warning">⚠️ <strong>Format Notice:</strong> This recipe requires PNG format for transparency support. External image served as JPEG. Using local PNG fallback for optimal display.</div>' : '';
    
  document.getElementById('modal').style.display='flex';
- document.getElementById('modal').innerHTML=`<div class="modal-content">
+ document.getElementById('modal').innerHTML=`<div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="recipe-title-${id}" tabindex="-1">
    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
-     <h2 style="margin:0;display:flex;align-items:center;gap:10px"><i data-lucide="salad" class="icon"></i>${r.title}${r.requiresPNG ? ' <span class=\"badge\"><i data-lucide=\"image\" class=\"icon\"></i>PNG</span>' : ''}</h2>
-     <button class="btn secondary" onclick="closeModal()" aria-label="Close"><i data-lucide="x" class="icon"></i>Close</button>
+     <h2 id="recipe-title-${id}" style="margin:0;display:flex;align-items:center;gap:10px"><i data-lucide="salad" class="icon" aria-hidden="true"></i>${r.title}${r.requiresPNG ? ' <span class=\"badge\"><i data-lucide=\"image\" class=\"icon\" aria-hidden=\"true\"></i>PNG</span>' : ''}</h2>
+     <button class="btn secondary" onclick="closeModal()" aria-label="Close dialog"><i data-lucide="x" class="icon" aria-hidden="true"></i>Close</button>
    </div>
    <div class="image-wrap" style="margin:10px 0;">
      <img src="${imgUrl}" alt="${r.title}" style="width:100%;max-height:280px;object-fit:cover;border-radius:10px;" onerror="this.src='${IMAGE_CONFIG.defaultFallback}'">
@@ -330,6 +357,7 @@ function openRecipe(id){
      ${r.requiresPNG ? '<button class="btn" onclick="checkImageFormat(' + id + ')"><i data-lucide="scan" class="icon"></i>Check Format</button>' : ''}
    </div>
  </div>`
+ setupModalA11y();
 }
 
 function startTimer(sec){
@@ -348,10 +376,10 @@ function aiSuggest(){alert('🧠 AI Suggestion: Try adding herbs & olive oil for
 
 function openAdd(){
  document.getElementById('modal').style.display='flex';
- document.getElementById('modal').innerHTML=`<div class="modal-content">
+ document.getElementById('modal').innerHTML=`<div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="add-title" tabindex="-1">
    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
-     <h2 style="margin:0;display:flex;align-items:center;gap:10px"><i data-lucide="plus" class="icon"></i>Add New Recipe</h2>
-     <button class="btn secondary" onclick="closeModal()"><i data-lucide="x" class="icon"></i>Close</button>
+     <h2 id="add-title" style="margin:0;display:flex;align-items:center;gap:10px"><i data-lucide="plus" class="icon" aria-hidden="true"></i>Add New Recipe</h2>
+     <button class="btn secondary" onclick="closeModal()" aria-label="Close dialog"><i data-lucide="x" class="icon" aria-hidden="true"></i>Close</button>
    </div>
    <div class="format-info">
      <strong>📝 Image Format Guidelines:</strong><br>
@@ -390,6 +418,7 @@ function openAdd(){
 
   // Initialize icons for newly injected content
   if (window.lucide && window.lucide.createIcons) { window.lucide.createIcons(); }
+  setupModalA11y();
 
   // Wire up file upload
   const fileInput = document.getElementById('fileInput');
@@ -437,7 +466,8 @@ function addRecipe(){
  const time = parseInt(document.getElementById('time').value) || 600;
  const requiresPNG = document.getElementById('pngRequired').checked;
  
- if (!title || !img || ingredients.length === 0 || steps.length === 0) {
+ const hasImage = Boolean(window.__uploadedImageDataURL) || Boolean(imgUrlInput);
+ if (!title || !hasImage || ingredients.length === 0 || steps.length === 0) {
    alert('Please fill in all required fields');
    return;
  }
@@ -490,6 +520,42 @@ function addRecipe(){
  // Show success message with format info
  const formatNote = requiresPNG ? ' (PNG format required - consider using local images for transparency support)' : '';
  alert(`✅ Recipe "${title}" added successfully!${formatNote}`);
+}
+// Inline image error feedback
+function imageError(imgEl, id){
+  imgEl.src = IMAGE_CONFIG.defaultFallback;
+  const msg = document.getElementById('img-error-'+id);
+  if (msg){
+    msg.textContent = 'Image failed to load. Showing placeholder.';
+    msg.style.display = 'block';
+  }
+}
+
+// Modal accessibility: focus trap + Esc to close
+let __modalKeyHandler = null;
+function setupModalA11y(){
+  const overlay = document.getElementById('modal');
+  const dialog = overlay && overlay.querySelector('.modal-content');
+  if (!overlay || !dialog) return;
+  const focusable = dialog.querySelectorAll('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])');
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  dialog.focus();
+  dialog.addEventListener('keydown', (e)=>{
+    if (e.key === 'Tab'){
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+  __modalKeyHandler = (e)=>{ if (e.key === 'Escape') closeModal(); };
+  document.addEventListener('keydown', __modalKeyHandler);
+}
+
+function closeModal(){
+  const overlay = document.getElementById('modal');
+  if (overlay) overlay.style.display='none';
+  if (__modalKeyHandler){ document.removeEventListener('keydown', __modalKeyHandler); __modalKeyHandler = null; }
 }
 function closeModal(){document.getElementById('modal').style.display='none'}
 render();
