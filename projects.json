@@ -3330,6 +3330,16 @@
   "link": "./projects/ui-as-enemy/index.html",
   "icon": "ri-bug-line",
   "coverStyle": "background: linear-gradient(135deg, #1f2933 0%, #111827 100%); color: #f9fafb;"
+},
+{
+  "title": "CPU Scheduling Visualizer",
+  "category": "utility",
+  "difficulty": "Advanced",
+  "description": "An interactive CPU scheduling visualizer that helps users understand how common scheduling algorithms work. Users can define processes, select algorithms, and watch animated Gantt chart execution with calculated waiting and turnaround times for educational clarity.",
+  "tech": ["HTML", "CSS", "JavaScript"],
+  "link": "./projects/cpu-scheduling-visualizer/index.html",
+  "icon": "ri-cpu-line",
+  "coverStyle": "background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #020617 100%); color: #e5e7eb;"
 }
 
 ]
