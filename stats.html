@@ -551,20 +551,29 @@
         const categoryCount = {};
 
         projects.forEach(project => {
-          // Skip if no title or link
-          if (!project.title || !project.link) return;
-
-          const title = project.title.trim();
+          // Validate and trim title
+          const title = project.title ? project.title.trim() : '';
+          if (!title || !project.link) return;
           
-          // Skip duplicates
-          if (seenTitles.has(title.toLowerCase())) return;
-          seenTitles.add(title.toLowerCase());
+          // Skip duplicates (case-insensitive)
+          const titleKey = title.toLowerCase();
+          if (seenTitles.has(titleKey)) return;
+          seenTitles.add(titleKey);
 
-          // Count by category
-          const category = (project.category || 'other')
+          // Normalize category (handle plurals, lowercase, and spaces)
+          let category = (project.category || 'other')
             .trim()
             .toLowerCase()
             .replace(/\s+/g, '_');
+          
+          // Normalize plural categories to singular
+          const pluralMap = {
+            'games': 'game',
+            'puzzles': 'puzzle',
+            'utilities': 'utility'
+          };
+          category = pluralMap[category] || category;
+          
           categoryCount[category] = (categoryCount[category] || 0) + 1;
         });
 
