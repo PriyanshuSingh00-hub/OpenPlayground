@@ -419,6 +419,11 @@ button#themeToggle {
   transition: all var(--transition-slow);
 }
 
+/* Reserve space for sticky navbar */
+#header-placeholder {
+  height: 72px; /* matches navbar height */
+}
+
 .nav-container {
   max-width: 1280px;
   margin: 0 auto;
