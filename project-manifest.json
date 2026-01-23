@@ -22,6 +22,9 @@
       "folder": "Attention Garden",
       "path": "./projects/AttentionGarden/project.json",
       "link": "./projects/AttentionGarden/index.html"
+      "folder": "MinimalSurvival",
+      "path": "./projects/MinimalSurvival/project.json",
+      "link": "./projects/MinimalSurvival/index.html"
     },
     {
       "folder": "365Days",
@@ -210,6 +213,11 @@
       "folder": "ChallengeGenerator",
       "path": "./projects/ChallengeGenerator/project.json",
       "link": "./projects/ChallengeGenerator/index.html"
+    },
+    {
+      "folder": "AmbientFocusRoom",
+      "path": "./projects/AmbientFocusRoom/project.json",
+      "link": "./projects/AmbientFocusRoom/index.html"
     },
     {
       "folder": "ChaloCanteen",
@@ -1495,6 +1503,11 @@
       "folder": "Time-Perception-Experiment",
       "path": "./projects/Time-Perception-Experiment/project.json",
       "link": "./projects/Time-Perception-Experiment/index.html"
+    },
+    {
+      "folder": "Time-Perception-Simulator",
+      "path": "./projects/Time-Perception-Simulator/project.json",
+      "link": "./projects/Time-Perception-Simulator/index.html"
     },
     {
       "folder": "time-zone-converter",
