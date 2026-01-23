@@ -244,6 +244,11 @@
       "link": "./projects/CodeEditor/index.html"
     },
     {
+      "folder": "MemoryFade",
+      "path": "./projects/MemoryFade/project.json",
+      "link": "./projects/MemoryFade/index.html"
+    },
+    {
       "folder": "codepong26",
       "path": "./projects/codepong26/project.json",
       "link": "./projects/codepong26/index.html"
