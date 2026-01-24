@@ -326,6 +326,11 @@
       "path": "./projects/Daily-Randomizer/project.json",
       "link": "./projects/Daily-Randomizer/index.html"
     },
+        {
+      "folder": "living-typrography",
+      "path": "./projects/living-typrography/project.json",
+      "link": "./projects/living-typrography/index.html"
+    },
     {
       "folder": "DailyAffirmationCard",
       "path": "./projects/DailyAffirmationCard/project.json",
