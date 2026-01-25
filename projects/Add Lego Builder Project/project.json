@@ -1,0 +1,13 @@
+{
+  "title": "Lego Builder Project",
+  "category": "game",
+  "difficulty": "Intermediate",
+  "description": "A 3D Lego building simulator where players can create and customize Lego structures using various brick sizes and colors. Features include intuitive controls, realistic physics, and a dynamic environment for endless creativity.",
+  "tech": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "icon": "ri-building-3-line",
+  "coverStyle": "background: radial-gradient(circle at top, #020617 0%, #000 70%); color: #e5e7eb;"
+}
