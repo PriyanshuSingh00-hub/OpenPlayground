@@ -3,7 +3,21 @@
 // ===============================
 
 import { ProjectVisibilityEngine } from "./core/projectVisibilityEngine.js";
-import { keyevents } from "./core/Shortcut.js"
+import { keyevents } from "./core/Shortcut.js";
+import { analyticsEngine } from "./core/analyticsEngine.js";
+import { analyticsDashboard } from "./core/analyticsDashboard.js";
+
+// Expose analytics dashboard globally
+window.openAnalyticsDashboard = function() {
+    analyticsDashboard.open();
+};
+
+// Expose project tracking globally for cardRenderer
+window.trackProjectView = function(projectData) {
+    if (analyticsEngine && projectData) {
+        analyticsEngine.trackProjectView(projectData);
+    }
+};
 
 class ProjectManager {
     constructor() {

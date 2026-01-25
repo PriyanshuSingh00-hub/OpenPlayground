@@ -56,12 +56,20 @@ export function createProjectCard(project) {
     const coverClass = project.coverClass || '';
     const sourceUrl = getSourceCodeUrl(project.link);
 
+    // Create project data for tracking
+    const projectDataStr = JSON.stringify({
+        title: project.title,
+        link: project.link,
+        category: project.category,
+        description: project.description || ''
+    }).replace(/'/g, "\\'");
+
     // Note: We're using onclick handlers here to maintain compatibility with existing global functions
     // but ideally these should be event listeners attached after rendering.
     // Keeping it simple for this refactor to match existing pattern.
 
     return `
-        <div class="card" data-category="${escapeHtml(project.category)}" onclick="window.location.href='${escapeHtml(project.link)}'; event.stopPropagation();">
+        <div class="card" data-category="${escapeHtml(project.category)}" onclick="window.trackProjectView && window.trackProjectView(${projectDataStr.replace(/"/g, '&quot;')}); window.location.href='${escapeHtml(project.link)}'; event.stopPropagation();">
             <div class="card-actions">
                 <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" 
                         data-project-title="${escapeHtml(project.title)}" 
