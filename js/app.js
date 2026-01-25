@@ -3,7 +3,9 @@
 // ===============================
 
 import { ProjectVisibilityEngine } from "./core/projectVisibilityEngine.js";
-import { keyevents } from "./core/Shortcut.js"
+import { keyevents } from "./core/Shortcut.js";
+import { annotationEngine } from "./core/annotationEngine.js";
+import { insightRenderer } from "./core/insightRenderer.js";
 
 class ProjectManager {
     constructor() {
@@ -381,6 +383,11 @@ class ProjectManager {
                            title="View Source Code">
                             <i class="ri-github-fill"></i>
                         </a>
+                        <button class="view-insights-btn"
+                                onclick="event.preventDefault(); event.stopPropagation(); window.openInsightsPanel('${this.escapeHtml(project.title)}');"
+                                title="View Community Insights">
+                            <i class="ri-lightbulb-line"></i>
+                        </button>
                     </div>
                     <div class="card-link">
                         <div class="card-cover ${coverClass}" style="${coverStyle}">
@@ -423,6 +430,11 @@ class ProjectManager {
                                 onclick="window.toggleProjectBookmark(this, '${this.escapeHtml(project.title)}', '${this.escapeHtml(project.link)}', '${this.escapeHtml(project.category)}', '${this.escapeHtml(project.description || '')}');"
                                 title="${isBookmarked ? 'Remove from bookmarks' : 'Add to bookmarks'}">
                             <i class="${isBookmarked ? 'ri-bookmark-fill' : 'ri-bookmark-line'}"></i>
+                        </button>
+                        <button class="view-insights-btn"
+                                onclick="window.openInsightsPanel('${this.escapeHtml(project.title)}');"
+                                title="View Community Insights">
+                            <i class="ri-lightbulb-line"></i>
                         </button>
                         <a href="${project.link}" class="view-btn" title="View Project">
                             <i class="ri-arrow-right-line"></i>
@@ -543,6 +555,44 @@ window.toggleProjectBookmark = function (btn, title, link, category, description
     showToast(isNowBookmarked ? 'Added to bookmarks' : 'Removed from bookmarks');
 };
 
+/**
+ * Global Insights Panel Opener
+ * Opens the community insights panel for a specific project
+ */
+window.openInsightsPanel = function(projectTitle) {
+    if (!window.annotationEngine || !window.insightRenderer) {
+        console.warn('Annotation system not loaded');
+        return;
+    }
+    
+    // Set current project context
+    window.annotationEngine.currentProject = { title: projectTitle };
+    
+    // Check for deep link parameter
+    const deepLinkAnnotation = window.annotationEngine.checkDeepLink();
+    
+    // Render the insights panel
+    window.insightRenderer.renderInsightsPanel(projectTitle, deepLinkAnnotation);
+};
+
+/**
+ * Check for deep link on page load
+ * If ?insight=annotationId is in URL, open the insights panel
+ */
+function checkInsightDeepLink() {
+    if (!window.annotationEngine) return;
+    
+    const deepLinkAnnotation = window.annotationEngine.checkDeepLink();
+    if (deepLinkAnnotation) {
+        const annotation = window.annotationEngine.getAnnotationById(deepLinkAnnotation);
+        if (annotation) {
+            setTimeout(() => {
+                window.openInsightsPanel(annotation.projectId);
+            }, 500);
+        }
+    }
+}
+
 function showToast(message) {
     const existing = document.querySelector('.bookmark-toast');
     if (existing) existing.remove();
@@ -593,11 +643,13 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         keyevents();
         setTimeout(initProjectManager, 100); // Small delay to ensure components are ready
+        setTimeout(checkInsightDeepLink, 600); // Check for insight deep links
     });
 } else {
     // DOM already loaded
     keyevents();
     setTimeout(initProjectManager, 100);
+    setTimeout(checkInsightDeepLink, 600);
 }
 
 // Fade-in animation observer
