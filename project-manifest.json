@@ -408,6 +408,16 @@
       "path": "./projects/dictionary/project.json",
       "link": "./projects/dictionary/index.html"
     },
+        {
+      "folder": "ConnectFour",
+      "path": "./projects/ConnectFour/project.json",
+      "link": "./projects/ConnectFour/index.html"
+    },
+    {
+      "folder": "3DMouse",
+      "path": "./projects/3DMouse/project.json",
+      "link": "./projects/3DMouse/index.html"
+    },
     {
       "folder": "dictonary-app",
       "path": "./projects/dictonary-app/project.json",
