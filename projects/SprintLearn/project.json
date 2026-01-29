@@ -1,0 +1,9 @@
+{
+  "title": "SprintLearn",
+  "category": "utility",
+  "difficulty": "Intermediate",
+  "description": "Learning sprint organizer with task board, timer, reflections, and analytics.",
+  "tech": ["HTML", "CSS", "JavaScript"],
+  "icon": "ri-timer-flash-line",
+  "coverStyle": "background: linear-gradient(135deg, #6366f1 0%, #22c55e 100%); color: white;"
+}
