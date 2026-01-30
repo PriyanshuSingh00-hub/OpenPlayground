@@ -1,0 +1,14 @@
+{
+  "title": "3D Modeller",
+  "category": "utility",
+  "difficulty": "Beginner",
+  "description": "A web-based 3D modelling application that allows users to create, edit, and visualize 3D objects directly in the browser. Features include basic shape creation, transformations, and rendering options.",
+  "tech": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Three.js"
+  ],
+  "icon": "ri-cube-line",
+  "coverStyle": "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;"
+}
