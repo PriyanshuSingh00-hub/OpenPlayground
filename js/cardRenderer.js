@@ -3,6 +3,8 @@
  * Responsible for generating HTML markup for project cards and list items.
  */
 
+import { deadlineManager } from './projectDeadlineManager.js';
+
 /**
  * Escapes HTML characters to prevent XSS.
  * @param {string} str - The string to escape.
@@ -45,6 +47,37 @@ function getSourceCodeUrl(link) {
 }
 
 /**
+ * Generates deadline indicator HTML if project has a deadline
+ * @param {string} projectTitle - The title of the project
+ * @returns {string} HTML string for deadline indicator or empty string
+ */
+function getDeadlineIndicator(projectTitle) {
+    const deadline = deadlineManager.getProjectDeadline(projectTitle);
+    if (!deadline) return '';
+
+    const importance = deadlineManager.getImportanceMetadata(deadline.importance);
+    const daysLeft = deadlineManager.getDaysUntilDeadline(deadline.deadline);
+    const statusText = deadlineManager.getDeadlineStatus(deadline.deadline);
+    
+    let statusClass = 'deadline-normal';
+    if (daysLeft < 0) statusClass = 'deadline-overdue';
+    else if (daysLeft <= 3) statusClass = 'deadline-urgent';
+    else if (daysLeft <= 7) statusClass = 'deadline-soon';
+
+    return `
+        <div class="deadline-badge ${statusClass}">
+            <div class="deadline-importance" style="background-color: ${importance.color};" title="Importance: ${importance.label}">
+                <i class="${importance.icon}"></i>
+            </div>
+            <div class="deadline-info">
+                <span class="deadline-date">${deadline.deadline}</span>
+                <span class="deadline-status">${statusText}</span>
+            </div>
+        </div>
+    `;
+}
+
+/**
  * Generates HTML for a project card.
  * @param {Object} project - The project data object.
  * @returns {string} The HTML string for the project card.
@@ -55,6 +88,7 @@ export function createProjectCard(project) {
     const coverStyle = project.coverStyle || '';
     const coverClass = project.coverClass || '';
     const sourceUrl = getSourceCodeUrl(project.link);
+    const deadlineIndicator = getDeadlineIndicator(project.title);
 
     // Create project data for tracking
     const projectDataStr = JSON.stringify({
@@ -90,12 +124,18 @@ export function createProjectCard(project) {
                         title="${isBookmarked ? 'Remove from bookmarks' : 'Add to bookmarks'}">
                     <i class="${isBookmarked ? 'ri-bookmark-fill' : 'ri-bookmark-line'}"></i>
                 </button>
+                <button class="deadline-btn" 
+                        onclick="event.preventDefault(); event.stopPropagation(); window.openDeadlineModal('${escapeHtml(project.title)}');"
+                        title="Set deadline and importance">
+                    <i class="ri-calendar-line"></i>
+                </button>
                 <a href="${sourceUrl}" target="_blank" class="source-btn" 
                    onclick="event.stopPropagation();" 
                    title="View Source Code">
                     <i class="ri-github-fill"></i>
                 </a>
             </div>
+            ${deadlineIndicator}
             <div class="card-link">
                 <div class="card-cover ${coverClass}" style="${coverStyle}">
                     <i class="${escapeHtml(project.icon || 'ri-code-s-slash-line')}"></i>
@@ -123,6 +163,8 @@ export function createProjectListCard(project) {
     const coverStyle = project.coverStyle || '';
     const coverClass = project.coverClass || '';
     const sourceUrl = getSourceCodeUrl(project.link);
+    const deadline = deadlineManager.getProjectDeadline(project.title);
+    const importance = deadline ? deadlineManager.getImportanceMetadata(deadline.importance) : null;
 
     // Create project data for Try It button
     const projectData = JSON.stringify({
@@ -138,7 +180,13 @@ export function createProjectListCard(project) {
                 <i class="${escapeHtml(project.icon || 'ri-code-s-slash-line')}"></i>
             </div>
             <div class="list-card-content">
-                <h4 class="list-card-title">${escapeHtml(project.title)}</h4>
+                <div class="list-card-title-wrapper">
+                    <h4 class="list-card-title">${escapeHtml(project.title)}</h4>
+                    ${deadline ? `<span class="list-card-deadline-badge" style="background-color: ${importance.color};" title="Importance: ${importance.label}">
+                        <i class="${importance.icon}"></i>
+                        ${deadline.deadline}
+                    </span>` : ''}
+                </div>
                 <p class="list-card-description">${escapeHtml(project.description || '')}</p>
             </div>
             <div class="list-card-meta">
@@ -150,8 +198,13 @@ export function createProjectListCard(project) {
                         <i class="ri-play-circle-line"></i>
                     </button>
                     <button class="list-card-btn ${isBookmarked ? 'bookmarked' : ''}" 
-                            onclick="window.toggleProjectBookmark(this, '${escapeHtml(project.title)}', '${escapeHtml(project.link)}', '${escapeHtml(project.category)}', '${escapeHtml(project.description || '')}');">
+                            onclick="event.stopPropagation(); window.toggleProjectBookmark(this, '${escapeHtml(project.title)}', '${escapeHtml(project.link)}', '${escapeHtml(project.category)}', '${escapeHtml(project.description || '')}');">
                         <i class="${isBookmarked ? 'ri-bookmark-fill' : 'ri-bookmark-line'}"></i>
+                    </button>
+                    <button class="list-card-btn" 
+                            onclick="event.stopPropagation(); window.openDeadlineModal('${escapeHtml(project.title)}');"
+                            title="Set deadline and importance">
+                        <i class="ri-calendar-line"></i>
                     </button>
                     <a href="${escapeHtml(project.link)}" class="list-card-btn" title="Open Project">
                         <i class="ri-external-link-line"></i>

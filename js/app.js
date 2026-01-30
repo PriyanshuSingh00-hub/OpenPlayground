@@ -5,6 +5,8 @@
 
 import { ProjectVisibilityEngine } from "./core/projectVisibilityEngine.js";
 import { keyevents } from "./core/Shortcut.js"
+import { deadlineManager } from "./projectDeadlineManager.js";
+import { deadlineUI } from "./deadlineUI.js";
 import notificationManager from "./core/notificationManager.js";
 
 class ProjectManager {
@@ -281,6 +283,11 @@ class ProjectManager {
         if (el.randomProjectBtn) {
             el.randomProjectBtn.addEventListener('click', () => this.openRandomProject());
         }
+
+        // Listen for deadline updates
+        window.addEventListener('deadlineUpdated', () => {
+            this.render();
+        });
     }
 
     handleSearch(query) {
@@ -385,6 +392,11 @@ class ProjectManager {
 
         // Get sort mode and set in visibility engine
         const sortMode = el.sortSelect?.value || 'default';
+        if (sortMode === 'az') filtered.sort((a, b) => a.title.localeCompare(b.title));
+        else if (sortMode === 'za') filtered.sort((a, b) => b.title.localeCompare(a.title));
+        else if (sortMode === 'newest') filtered.reverse();
+        else if (sortMode === 'deadline') filtered = deadlineManager.sortByDeadline(filtered);
+        else if (sortMode === 'importance') filtered = deadlineManager.sortByImportance(filtered);
         this.state.visibilityEngine.setSortMode(sortMode);
 
         // Get filtered and sorted projects from visibility engine
@@ -464,6 +476,31 @@ class ProjectManager {
             const sourceUrl = this.getSourceCodeUrl(project.link);
             const projectJson = JSON.stringify(project).replace(/'/g, "&apos;");
 
+            // Get deadline info
+            const deadline = deadlineManager.getProjectDeadline(project.title);
+            const deadlineHtml = deadline ? (() => {
+                const importance = deadlineManager.getImportanceMetadata(deadline.importance);
+                const daysLeft = deadlineManager.getDaysUntilDeadline(deadline.deadline);
+                const statusText = deadlineManager.getDeadlineStatus(deadline.deadline);
+                
+                let statusClass = 'deadline-normal';
+                if (daysLeft < 0) statusClass = 'deadline-overdue';
+                else if (daysLeft <= 3) statusClass = 'deadline-urgent';
+                else if (daysLeft <= 7) statusClass = 'deadline-soon';
+
+                return `
+                    <div class="deadline-badge ${statusClass}">
+                        <div class="deadline-importance" style="background-color: ${importance.color};">
+                            <i class="${importance.icon}"></i>
+                        </div>
+                        <div class="deadline-info">
+                            <span class="deadline-date">${deadline.deadline}</span>
+                            <span class="deadline-status">${statusText}</span>
+                        </div>
+                    </div>
+                `;
+            })() : '';
+
             return `
                 <div class="card" 
                      data-category="${this.escapeHtml(project.category)}" 
@@ -482,6 +519,11 @@ class ProjectManager {
                                 title="${isBookmarked ? 'Remove from bookmarks' : 'Add to bookmarks'}">
                             <i class="${isBookmarked ? 'ri-bookmark-fill' : 'ri-bookmark-line'}"></i>
                         </button>
+                        <button class="deadline-btn" 
+                                onclick="event.preventDefault(); event.stopPropagation(); window.openDeadlineModal('${this.escapeHtml(project.title)}');"
+                                title="Set deadline and importance">
+                            <i class="ri-calendar-line"></i>
+                        </button>
                         <a href="${sourceUrl}" target="_blank" class="source-btn" 
                            onclick="event.stopPropagation();" 
                            title="View Source Code">
@@ -493,6 +535,7 @@ class ProjectManager {
                             <i class="ri-lightbulb-line"></i>
                         </button>
                     </div>
+                    ${deadlineHtml}
                     <div class="card-link">
                         <div class="card-cover ${coverClass}" style="${coverStyle}">
                             <i class="${this.escapeHtml(project.icon || 'ri-code-s-slash-line')}"></i>
@@ -532,6 +575,16 @@ class ProjectManager {
             const projectJson = JSON.stringify(project).replace(/'/g, "&apos;");
             const badgeHtml = this.getProjectBadgeHtml(project);
 
+            // Get deadline info
+            const deadline = deadlineManager.getProjectDeadline(project.title);
+            const deadlineBadgeHtml = deadline ? (() => {
+                const importance = deadlineManager.getImportanceMetadata(deadline.importance);
+                return `<span class="list-card-deadline-badge" style="background-color: ${importance.color};" title="Importance: ${importance.label}">
+                    <i class="${importance.icon}"></i>
+                    ${deadline.deadline}
+                </span>`;
+            })() : '';
+
             return `
                 <div class="list-card"
                      data-link="${this.escapeHtml(project.link)}">
@@ -541,6 +594,7 @@ class ProjectManager {
                     <div class="list-card-content">
                         <div class="list-card-header">
                             <h3 class="list-card-title">${this.escapeHtml(project.title)}</h3>
+                            ${deadlineBadgeHtml}
                             ${badgeHtml}
                             <span class="category-tag">${this.capitalize(project.category)}</span>
                         </div>
@@ -563,6 +617,12 @@ class ProjectManager {
                                 title="${isBookmarked ? 'Remove from bookmarks' : 'Add to bookmarks'}">
                             <i class="${isBookmarked ? 'ri-bookmark-fill' : 'ri-bookmark-line'}"></i>
                         </button>
+                        <button class="deadline-btn" 
+                                onclick="window.openDeadlineModal('${this.escapeHtml(project.title)}');"
+                                title="Set deadline and importance">
+                            <i class="ri-calendar-line"></i>
+                        </button>
+                        <a href="${project.link}" class="view-btn" title="View Project">
                         <a href="${project.link}" class="view-btn" title="View Project"
                            onclick="window.projectManagerInstance.trackProjectClick(${JSON.stringify(project).replace(/"/g, '&quot;')})">
                             <i class="ri-arrow-right-line"></i>
@@ -989,12 +1049,16 @@ function initCommandPalette() {
 // Also check immediately in case components already loaded (module timing issue)
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
+        keyevents();
+        deadlineUI.init(); // Initialize deadline UI
         initCommandPalette();
         setTimeout(initProjectManager, 100); // Small delay to ensure components are ready
         setTimeout(checkInsightDeepLink, 600); // Check for insight deep links
     });
 } else {
     // DOM already loaded
+    keyevents();
+    deadlineUI.init(); // Initialize deadline UI
     initCommandPalette();
     setTimeout(initProjectManager, 100);
     setTimeout(checkInsightDeepLink, 600);
