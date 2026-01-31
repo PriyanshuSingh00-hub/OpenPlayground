@@ -2043,6 +2043,12 @@
       "path": "./projects/Calci/project.json",
       "link": "./projects/Calci/index.html"
     }
+    {
+      "folder": "SpaceWars",
+      "path": "./projects/SpaceWars/project.json",
+      "link": "./projects/SpaceWars/index.html"
+    }
+  
   
   ]
 }
