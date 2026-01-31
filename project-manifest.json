@@ -1964,6 +1964,11 @@
       "link": "./projects/Focus-Timer-Pro/index.html"
     },
     {
+      "folder": "caseConverter",
+      "path": "./projects/caseConverter/project.json",
+      "link": "./projects/caseConverter/index.html"
+    },
+    {
       "folder": "Code Snippet Expiry Vault",
       "path": "./projects/Code-Snippet-Expiry-Vault/project.json",
       "link": "./projects/Code-Snippet-Expiry-Vault/index.html"
