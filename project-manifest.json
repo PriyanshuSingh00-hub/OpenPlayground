@@ -1735,5 +1735,10 @@
       "path": "./projects/Digital Mood Landscape/project.json",
       "link": "./projects/Digital Mood Landscape/index.html"
     }
+    {
+      "folder": "GrowthTube",
+      "path": "./projects/GrowthTube/project.json",
+      "link": "./projects/GrowthTube/index.html"
+    }
   ]
 }
