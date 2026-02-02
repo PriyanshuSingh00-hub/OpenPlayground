@@ -1,13 +1,13 @@
 {
-  "title": "Pass Gen",
+  "title": "fake ai code reviewer",
   "category": "utility",
   "difficulty": "Intermediate",
-  "description": "A password generator built with HTML, CSS, and JavaScript.",
+  "description": "A fake AI code reviewer built with HTML, CSS, and JavaScript.",
   "tech": [
     "HTML",
     "CSS",
     "JavaScript"
   ],
-  "icon": "ri-lock-password-line",
+  "icon": "ri-code-s-slash-line",
   "coverStyle": "background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white;"
 }
