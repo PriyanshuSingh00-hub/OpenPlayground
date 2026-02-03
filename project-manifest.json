@@ -23,6 +23,12 @@
       "path": "./projects/AttentionGarden/project.json",
       "link": "./projects/AttentionGarden/index.html"
     },
+     {
+      "folder": "e-learn",
+      "path": "./projects/e-learn/project.json",
+      "link": "./projects/e-learn/index.html"
+    },
+  
     {
       "folder": "MinimalSurvival",
       "path": "./projects/MinimalSurvival/project.json",
@@ -2148,8 +2154,7 @@
       "path": "./projects/puzzleroom/project.json",
       "link": "./projects/puzzleroom/index.html"
     }
-  
-  
+ 
   
   ]
 }
