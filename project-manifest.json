@@ -2113,6 +2113,11 @@
       "path": "./projects/SpaceWars/project.json",
       "link": "./projects/SpaceWars/index.html"
     },
+      {
+      "folder": "internet-speed-status-checker",
+      "path": "./projects/internet-speed-status-checker/project.json",
+      "link": "./projects/internet-speed-status-checker/index.html"
+
     {
       "folder":"internet-speed-tester",
       "path":"./projects/internet-speed-tester/project.json",
