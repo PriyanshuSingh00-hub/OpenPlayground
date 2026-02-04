@@ -2153,6 +2153,11 @@
       "folder": "puzzleroom",
       "path": "./projects/puzzleroom/project.json",
       "link": "./projects/puzzleroom/index.html"
+    },
+     {
+      "folder": "tab-focus-idle-tracker",
+      "path": "./projects/tab-focus-idle-tracker/project.json",
+      "link": "./projects/tab-focus-idle-tracker/index.html"
     }
  
   
