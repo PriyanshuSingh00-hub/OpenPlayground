@@ -1875,6 +1875,11 @@
       "link": "./projects/virtual-keyboard/index.html"
     },
     {
+      "folder": "taskify-todo-app",
+      "path": "./projects/taskify-todo-app/project.json",
+      "link": "./projects/taskify-todo-app/index.html"
+    },
+    {
       "folder": "Virtual_Control_Panel",
       "path": "./projects/Virtual_Control_Panel/project.json",
       "link": "./projects/Virtual_Control_Panel/index.html"
