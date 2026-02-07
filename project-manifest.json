@@ -2077,6 +2077,8 @@
       "folder": "Tower_Defence",
       "path": "./projects/Tower_Defence/project.json",
       "link": "./projects/Tower_Defence/index.html"
+    },
+    {
       "folder": "snake world",
       "path": "./projects/snake world/project.json",
       "link": "./projects/snake world/index.html"
@@ -2206,7 +2208,7 @@
       "folder": "Study-Buddy",
       "path": "./projects/Studdy-Buddy/project.json",
       "link": "./projects/Studdy-Buddy/index.html"
-    }
+    },
      {
       "folder": "tab-focus-idle-tracker",
       "path": "./projects/tab-focus-idle-tracker/project.json",
