@@ -14,6 +14,11 @@
       "link": "./projects/2048-puzzle/index.html"
     },
     {
+      "folder": "forget-curve",
+      "path": "./projects/forget-curve/project.json",
+      "link": "./projects/forget-curve/index.html"
+    },
+    {
       "folder": "one-btn",
       "path": "./projects/one-btn/project.json",
       "link": "./projects/one-btn/index.html"
