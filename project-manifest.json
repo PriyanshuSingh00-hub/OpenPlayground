@@ -2268,6 +2268,10 @@
       "folder": "browser-storage-explorer",
       "path": "./projects/browser-storage-explorer/project.json",
       "link": "./projects/browser-storage-explorer/index.html"
+   {
+      "folder": "privacy-permission-checker",
+      "path": "./projects/privacy-permission-checker/project.json",
+      "link": "./projects/privacy-permission-checker/index.html"
   }
   ]
 }
