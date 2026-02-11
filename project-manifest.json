@@ -439,6 +439,11 @@
       "link": "./projects/Cryptographic-Protocol-Simulator/index.html"
     },
     {
+      "folder": "Chronova",
+      "path": "./projects/Chronova/project.json",
+      "link": "./projects/Chronova/index.html"
+    },
+    {
       "folder": "calcx-calculator-app",
       "path": "./projects/calcx-calculator-app/project.json",
       "link": "./projects/calcx-calculator-app/index.html"
