@@ -2275,10 +2275,16 @@
       "link": "./projects/clipboard-activity-monitor/index.html"
   },
   {
+      "folder": "browser-storage-explorer",
+      "path": "./projects/browser-storage-explorer/project.json",
+      "link": "./projects/browser-storage-explorer/index.html"
+  },
+   {
       "folder": "js-event-flow-visualizer",
       "path": "./projects/js-event-flow-visualizer/project.json",
       "link": "./projects/js-event-flow-visualizer/index.html"
-   {
+  },
+  {
       "folder": "privacy-permission-checker",
       "path": "./projects/privacy-permission-checker/project.json",
       "link": "./projects/privacy-permission-checker/index.html"
