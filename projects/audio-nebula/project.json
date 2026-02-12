@@ -1,0 +1,21 @@
+{
+    "name": "NEO-GEN Nebula",
+    "description": "High-fidelity audio-reactive nebula visualizer with a sci-fi interface and local auth.",
+    "version": "1.0.0",
+    "author": "Antigravity",
+    "tags": [
+        "audio-reactive",
+        "canvas",
+        "sci-fi",
+        "generative-art",
+        "auth"
+    ],
+    "entry": "index.html",
+    "features": [
+        "Local Storage Authentication",
+        "Web Audio API Frequency Analysis",
+        "Particle-based Flow Field",
+        "Dynamic UI Parameter Control",
+        "Session Persistence"
+    ]
+}
