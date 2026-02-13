@@ -459,6 +459,11 @@
       "link": "./projects/SecurePass/index.html"
     },
     {
+      "folder": "TriDuel",
+      "path": "./projects/TriDuel/project.json",
+      "link": "./projects/TriDuel/index.html"
+    },
+    {
       "folder": "css-shapes-and-corners",
       "path": "./projects/css-shapes-and-corners/project.json",
       "link": "./projects/css-shapes-and-corners/index.html"
